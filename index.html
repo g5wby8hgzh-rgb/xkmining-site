@@ -2378,7 +2378,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
         </div>
         <div>
           <label for="sfMail">合作 / 反馈邮箱</label>
-          <input id="sfMail" placeholder="hello@yourdomain.com">
+          <input id="sfMail" placeholder="1094842995@qq.com">
         </div>
         <div>
           <label for="sfQrWx">公众号二维码</label>
@@ -5791,6 +5791,31 @@ function applySite(){
     if(a){
       a.href = 'mailto:' + t.mail;
       a.textContent = (t.contact && t.contact.coopMail) || t.mail;
+      a.title = '点击复制邮箱';
+      if(!a.dataset.copyBound){
+        a.dataset.copyBound = '1';
+        a.addEventListener('click', ev=>{
+          /* 手机上没有邮件 App 时 mailto 点了没反应，这里改成点一下直接复制 */
+          ev.preventDefault();
+          const mail = (a.textContent || '').trim();
+          const okTip = ()=> toast('邮箱已复制：' + mail);
+          const fallback = ()=>{
+            const ta = document.createElement('textarea');
+            ta.value = mail;
+            ta.style.cssText = 'position:fixed;top:-999px;left:0;opacity:0';
+            document.body.appendChild(ta); ta.select();
+            let ok = false;
+            try{ ok = document.execCommand('copy'); }catch(_){ ok = false; }
+            ta.remove();
+            if(ok) okTip(); else location.href = 'mailto:' + mail;
+          };
+          if(navigator.clipboard && window.isSecureContext){
+            navigator.clipboard.writeText(mail).then(okTip).catch(fallback);
+          } else {
+            fallback();
+          }
+        });
+      }
     }
   }
   const wxNote = document.querySelector('#ccWxNote');
