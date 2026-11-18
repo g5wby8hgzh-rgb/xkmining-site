@@ -708,6 +708,18 @@ input.has-local{border-color:#111;background:#fafaf8;font-weight:600;color:#111}
 }
 .cmt-del:hover{color:#111;border-color:#111;background:var(--bg-soft)}
 .cmt-del:disabled{opacity:.5;cursor:default}
+.cmt-ask{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line)}
+.cmt-ask input{
+  flex:1;min-width:130px;border:1px solid var(--line);border-radius:7px;padding:7px 10px;
+  font-family:inherit;font-size:12.5px;
+}
+.cmt-ask input:focus{outline:none;border-color:#111}
+.cmt-ask button{
+  border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-family:inherit;
+  font-size:11.5px;padding:6px 10px;border-radius:6px;cursor:pointer;line-height:1.6;
+}
+.cmt-ask button.cmt-ok{background:#111;color:#fff;border-color:#111}
+.cmt-ask button:hover{opacity:.85}
 .cmt-mine{color:var(--ink-faint);font-size:10.5px;letter-spacing:.04em}
 .drawer-note{
   margin:0 0 4px;padding:10px 0 0;font-size:11.5px;color:var(--ink-faint);line-height:1.7;
@@ -4017,10 +4029,7 @@ async function delComment(slug, id, btn){
   let pass = '';
   if(isAdmin){
     pass = adminPass();
-    if(!pass){
-      pass = prompt('请输入管理员密码，确认删除这条留言') || '';
-      if(!pass) return;
-    }
+    if(!pass){ askAdminPass(slug, id); return; }
   }
   if(btn){ btn.disabled = true; btn.textContent = '删除中'; }
   try{
@@ -4032,11 +4041,43 @@ async function delComment(slug, id, btn){
       toast('留言已删除，别人也看不到了');
       return;
     }
+    if(isAdmin && r && r.error === 'NOT_ALLOWED'){
+      /* 密码不对：清掉记住的，让管理员重新输一次 */
+      try{ sessionStorage.removeItem('xkm_admin_pass'); }catch(e){}
+      toast('管理密码不正确，请重新输入');
+      renderComments();
+      return;
+    }
     toast(r && r.error === 'NOT_ALLOWED' ? '你没有权限删除这条留言' : '删除失败，请稍后再试');
   }catch(e){
     toast('删除失败，请检查网络后重试');
   }
   if(btn){ btn.disabled = false; btn.textContent = '删除'; }
+}
+
+/* 管理员删除别人的留言时，就地要一次密码，不弹原生 prompt（移动端常被拦） */
+function askAdminPass(slug, id){
+  const btn = document.querySelector(`[data-cmtdel="${id}"]`);
+  if(!btn) return;
+  const row = btn.parentElement;
+  const box = document.createElement('div');
+  box.className = 'cmt-ask';
+  box.innerHTML = `<input type="password" placeholder="输入管理密码以删除这条留言" autocomplete="off">
+    <button class="cmt-ok" type="button">确认删除</button>
+    <button class="cmt-cancel" type="button">取消</button>`;
+  row.replaceWith(box);
+  const inp = box.querySelector('input');
+  inp.focus();
+  box.querySelector('.cmt-cancel').addEventListener('click', ()=> renderComments());
+  box.querySelector('.cmt-ok').addEventListener('click', ()=>{
+    const p = inp.value.trim();
+    if(!p){ inp.focus(); return; }
+    rememberAdminPass(p);
+    delComment(slug, id, null);
+  });
+  inp.addEventListener('keydown', e=>{
+    if(e.key === 'Enter'){ e.preventDefault(); box.querySelector('.cmt-ok').click(); }
+  });
 }
 
 /* ---- 分享浮层 ---- */
