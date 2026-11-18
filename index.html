@@ -258,9 +258,15 @@ section.block{padding:96px 0;border-bottom:1px solid var(--line);scroll-margin-t
 .tut-card.is-readable,.news-item.is-readable{cursor:pointer}
 .tut-card.is-readable:hover,.news-item.is-readable:hover{border-color:#111}
 .badge-paid{background:#fff;color:var(--ink-faint);border:1px solid var(--line)}
-.tut-card h3{font-size:20px;font-weight:700;line-height:1.4;margin-bottom:6px}
+.tut-card h3{
+  font-size:20px;font-weight:700;line-height:1.4;margin-bottom:6px;
+  min-height:2.8em;   /* 标题固定两行高，四张卡的副标题因此横向对齐 */
+}
 .tut-tool{font-size:12.5px;color:var(--ink-faint);letter-spacing:.06em;margin-bottom:14px}
-.tut-card p{font-size:14.5px;color:var(--ink-soft);font-weight:300;flex:1}
+.tut-card p{
+  font-size:14.5px;color:var(--ink-soft);font-weight:300;flex:1;line-height:1.78;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
 .tut-foot{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)}
 .tut-foot .k{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;font-weight:600}
 .tut-foot .v{font-size:13.5px;font-weight:500}
@@ -281,7 +287,10 @@ section.block{padding:96px 0;border-bottom:1px solid var(--line);scroll-margin-t
 .news-item:hover{background:var(--bg-soft)}
 .news-date{font-size:11.5px;color:var(--ink-faint);letter-spacing:.1em;padding:0;font-weight:600;white-space:nowrap}
 .news-body{max-width:none;display:flex;flex-direction:column;height:100%}
-.news-body h3{font-size:18px;font-weight:700;line-height:1.45;margin-bottom:10px}
+.news-body h3{
+  font-size:18px;font-weight:700;line-height:1.45;margin-bottom:10px;
+  min-height:2.9em;   /* 标题固定两行高，一行标题的卡片不再上下错位 */
+}
 .news-body h3 a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
 .news-body p{
   font-size:14px;color:var(--ink-soft);font-weight:300;line-height:1.72;
@@ -567,7 +576,7 @@ input.has-local{border-color:#111;background:#fafaf8;font-weight:600;color:#111}
 
 /* ========== 互动条：点赞 / 留言 / 转发 ========== */
 .engage{display:flex;align-items:center;gap:2px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
-.tut-card .engage{border-top:0;padding-top:0;margin-top:14px;margin-bottom:-6px}
+.tut-card .engage{border-top:0;padding-top:0;margin-top:auto;padding-top:18px;margin-bottom:-6px}
 .eng-btn{
   display:inline-flex;align-items:center;gap:6px;background:transparent;
   border:1px solid transparent;border-radius:var(--radius);padding:7px 10px;
@@ -1458,66 +1467,36 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <h3>DeepSeek 零基础入门</h3>
           <div class="tut-tool">DeepSeek · 网页版 / App</div>
           <p data-i18n="tut1">从注册到深度思考模式全流程演示：提问技巧、让 AI 帮你写方案、做表格、改文案。国内直连，无需魔法上网。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">✅ 网页与 App 均免费，无使用次数限制</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
           <div class="tut-top"><span class="tut-no">02</span><span class="badge badge-free" data-i18n="bFree2">免费</span></div>
           <h3>Kimi 长文档精读法</h3>
           <div class="tut-tool">Kimi 智能助手</div>
           <p data-i18n="tut2">把 100 页的合同、论文、报告丢给 Kimi，10 分钟提炼核心要点。教程覆盖上传、追问、交叉验证三个关键动作。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">✅ 基础功能全免费，长文本处理不收费</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
           <div class="tut-top"><span class="tut-no">03</span><span class="badge badge-free" data-i18n="bPart">免费</span></div>
           <h3>ChatGPT 免费额度全用法</h3>
           <div class="tut-tool">ChatGPT · Free Plan</div>
           <p data-i18n="tut3">免费账号到底能用什么？本课讲清免费版与付费版的真实差距，以及如何用免费额度完成 90% 的日常任务。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">⚠️ 可免费使用，高峰期限流；高级模型有次数上限</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
           <div class="tut-top"><span class="tut-no">04</span><span class="badge badge-free" data-i18n="bPart2">免费</span></div>
           <h3>Gemini 免费上手指南</h3>
           <div class="tut-tool">Google Gemini</div>
           <p data-i18n="tut4">谷歌全家桶里的免费 AI 助手：配合 Gmail、文档、表格提效。教程包含国内可用的访问方案与替代品清单。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">⚠️ 标准版免费；需科学上网，替代方案见教程</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
           <div class="tut-top"><span class="tut-no">05</span><span class="badge badge-free" data-i18n="bFree3">免费</span></div>
           <h3>AI 绘图：豆包 &amp; 即梦实战</h3>
           <div class="tut-tool">豆包 · 即梦 AI</div>
           <p data-i18n="tut5">不会画画也能出海报：提示词公式、风格控制、商用避坑。全部用免费额度完成，附 30 条可直接套用的提示词。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">✅ 每日免费生成额度充足，个人使用够用</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
           <div class="tut-top"><span class="tut-no">06</span><span class="badge badge-free" data-i18n="bFree4">免费</span></div>
           <h3>AI 办公提效工作流</h3>
           <div class="tut-tool">通义千问 · WPS AI · 讯飞</div>
           <p data-i18n="tut6">周报、PPT、会议纪要、数据表——一套用免费工具搭起来的办公自动化流程，每天帮你省下 1 小时。</p>
-          <div class="tut-foot">
-            <div class="k" data-i18n="canFree">能否免费使用</div>
-            <div class="v">✅ 全流程可用免费工具完成</div>
-          </div>
-          <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
       </div>
       <div id="tutMore"></div>
@@ -4216,6 +4195,23 @@ function jumpLink(it){
   if(!shouldJump(it)) return '';
   return `<a class="card-link" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(T('阅读原文'))}：${esc(xl(it, 'title'))}"></a>`;
 }
+/* 卡片摘要：优先扒正文里第一段「像人话」的内容。
+   desc 里常存的是选题角度/定稿日期这类创作备注，读者看到会莫名其妙，所以跳过。 */
+const CARD_META = /(定稿|选题角度|生成日期|调性|禁词|全文约|创作团|选题[:：]|角度[:：]|备注[:：]|摘要[:：])/;
+function cardText(it, want){
+  const d = String(xl(it, 'desc') || '').trim();
+  /* 简介够长就直接用——后台「摘要」栏就是给读者看的那句话 */
+  if(d.length >= 15){
+    return d.length > want ? d.slice(0, want).replace(/[，、；：,;:]$/, '') + '…' : d;
+  }
+  const body = String(xl(it, 'body') || '');
+  const lines = body.split(/\n+/).map(l=> l.replace(/^#{1,6}\s*/, '').trim()).filter(Boolean);
+  let pick = lines.find(l=> l.length >= 25 && !CARD_META.test(l));
+  if(!pick) pick = d;
+  if(!pick) return '';
+  const cut = pick.length > want;
+  return (cut ? pick.slice(0, want).replace(/[，、；：,;:]$/, '') + '…' : pick);
+}
 function tutCardEl(it, idx){
   const src = srcOf(it.url);
   const no = String((idx || 0) + 1).padStart(2, '0');
@@ -4231,13 +4227,7 @@ function tutCardEl(it, idx){
     <div class="tut-top"><span class="tut-no">${esc(no)}</span><span class="badge badge-${badgeKey(it.badge)}">${esc(xbadge(it.badge))}</span></div>
     <h3>${esc(title)}</h3>
     <div class="tut-tool">${esc(T(xl(it, 'tool')) || (it.url ? T('原文转载') : T('AI 实践')))}${src ? srcChip(src) : ''}</div>
-    <p>${esc(desc)}</p>
-    <div class="tut-foot"><div class="k">${esc(T('能否免费使用'))}</div><div class="v">${esc(cleanAccess(xl(it, 'access')) || T('详见正文'))}</div></div>
-    ${it.body
-      ? `<button class="tut-link" type="button" data-read="${esc(it.id)}"><span>${esc(T('站内阅读全文'))}</span><span class="arr">→</span></button>`
-      : it.url
-        ? `<a class="tut-link" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer"><span>${esc(T('阅读原文'))}</span><span class="arr">↗</span></a>`
-        : `<a class="tut-link" href="#official"><span>${esc(T('到公众号查看图文教程'))}</span><span class="arr">→</span></a>`}
+    <p>${esc(cardText(it, 160))}</p>
     ${jumpLink(it)}`;
   return card;
 }
@@ -4493,8 +4483,10 @@ function migrateContent(){
     const stale = store.get('published_ver', '') !== ver;
     const pubAt = Date.parse(ver) || 0;
     const localAt = +store.get('edited_at', 0) || 0;
-    /* 本地有更新的编辑（尚未发布），绝不能被旧快照冲掉 */
-    const localNewer = localAt > 0 && localAt > pubAt;
+    /* 本地有更新的编辑（尚未发布），绝不能被旧快照冲掉。
+       注意：只有登录站长会有「未发布编辑」，访客不该被这条挡住——
+       否则任何编辑过内容之后再退出的浏览器，会永远收不到线上更新。 */
+    const localNewer = localAt > 0 && localAt > pubAt && !!store.get('admin_session', null);
     if(stale && !localNewer && !store.get('admin_session', null)){
       stripForeignVideoKeys(PUBLISHED.content);
       store.set('content', PUBLISHED.content);
@@ -7089,7 +7081,7 @@ bindImagePick('#sfQrMiniFile', '#sfQrMini');
 /* 线上快照：把 content.json 放在网站根目录，所有访客看到的就是它。
    本机改完点「发布为 content.json」，上传覆盖同名文件即可全站生效。 */
 /* 内置视频种子（由 refresh_videos.py 维护）：即使 content.json 读取失败，视频区也不会空 */
-window.__SEED_VIDEOS = [{"id":"s-video-1","title":"一次看懂人工智能（科普中国）","desc":"国家级科普团队出品，33 分钟讲清 AI 是什么、能做什么、边界在哪。零基础一遍听懂，不爱看书的先看这个。","series":"科普入门 · 第 1 集","dur":"33:03","src":"https://www.bilibili.com/video/BV1134y1d72L","img":"https://i2.hdslb.com/bfs/archive/33c230315cd7dd2a974e66996b81a8cd3c48c0a1.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1794998832672,"tr":{"en":{"title":"Understand AI in one sitting (China Science Communication)","desc":"A national science team explains what AI is, what it can do and where its limits are — 33 minutes, no background needed.","series":"Science primer · Ep. 1"},"ja":{"title":"一度でわかる人工知能（中国科学普及）","desc":"国家の科学普及チームが、AIとは何か・何ができるか・限界はどこかを33分で整理。予備知識ゼロで理解できます。","series":"科学入門・第1回"},"ko":{"title":"한 번에 이해하는 인공지능 (중국 과학보급)","desc":"국가 과학보급 팀이 AI란 무엇이고 무엇을 할 수 있으며 한계가 어디인지를 33분에 정리합니다. 배경지식 없이도 이해됩니다.","series":"과학 입문 · 1편"},"es":{"title":"Entender la IA de una vez (Divulgación Científica de China)","desc":"Un equipo nacional de divulgación explica en 33 minutos qué es la IA, qué puede hacer y dónde están sus límites.","series":"Introducción científica · Ep. 1"},"fr":{"title":"Comprendre l'IA en une fois (Vulgarisation scientifique chinoise)","desc":"Une équipe nationale explique en 33 minutes ce qu'est l'IA, ce qu'elle sait faire et où sont ses limites.","series":"Initiation scientifique · Ép. 1"},"de":{"title":"KI in einem Durchgang verstehen (China Wissenschaftskommunikation)","desc":"Ein nationales Wissenschaftsteam erklärt in 33 Minuten, was KI ist, was sie kann und wo ihre Grenzen liegen.","series":"Wissenschaftliche Einführung · Folge 1"}}},{"id":"s-video-2","title":"小白人工智能第一课（北航何静）","desc":"18 分钟搭好认知框架：AI、AIGC、大模型、智能体、具身智能到底是什么关系。130 多万人在看，讲得比多数收费课清楚。","series":"科普入门 · 第 2 集","dur":"17:59","src":"https://www.bilibili.com/video/BV1xH6iBLExu","img":"https://i0.hdslb.com/bfs/archive/e71326441d4daa74da94306d5303c17a94ebc9d9.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1794998831672,"tr":{"en":{"title":"AI First Lesson for Beginners (Beihang, He Jing)","desc":"18 minutes to build your mental map: how AI, AIGC, large models, agents and embodied AI relate. Over 1.3M views.","series":"Science primer · Ep. 2"},"ja":{"title":"初心者のためのAI第一課（北京航空航天大学・何静）","desc":"18分で認知の枠組みを構築。AI・AIGC・大規模モデル・エージェント・身体性AIの関係が整理できます。130万再生超。","series":"科学入門・第2回"},"ko":{"title":"초보자를 위한 AI 첫 수업 (베이항공항공대 허징)","desc":"18분 만에 개념 지도를 완성합니다. AI, AIGC, 대형 모델, 에이전트, 구현형 AI의 관계를 정리합니다. 130만 뷰 이상.","series":"과학 입문 · 2편"},"es":{"title":"Primera clase de IA para principiantes (Beihang, He Jing)","desc":"18 minutos para armar el mapa mental: cómo se relacionan IA, AIGC, grandes modelos, agentes e IA corpórea. Más de 1,3 M de vistas.","series":"Introducción científica · Ep. 2"},"fr":{"title":"Premier cours d'IA pour débutants (Beihang, He Jing)","desc":"18 minutes pour construire votre carte mentale : rapports entre IA, AIGC, grands modèles, agents et IA incarnée.","series":"Initiation scientifique · Ép. 2"},"de":{"title":"Erste KI-Stunde für Einsteiger (Beihang, He Jing)","desc":"In 18 Minuten das mentale Modell aufbauen: wie KI, AIGC, große Modelle, Agenten und verkörperte KI zusammenhängen.","series":"Wissenschaftliche Einführung · Folge 2"}}},{"id":"s-video-3","title":"一条视频速通 AI 大模型原理","desc":"50 分钟讲透大模型到底怎么「学会」说话。不想被术语绕晕、又想知道背后原理的人，看这一条打底就够。","series":"原理拆解 · 第 1 集","dur":"51:49","src":"https://www.bilibili.com/video/BV17t4218761","img":"https://i2.hdslb.com/bfs/archive/677727fe693508fdb5dec3eecc9948cb222293ea.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1794998830672,"tr":{"en":{"title":"How large language models actually work, in one video","desc":"50 minutes on how models really learn to talk. The one to watch if you want the mechanics without drowning in jargon.","series":"How it works · Ep. 1"},"ja":{"title":"1本で速習：大規模モデルの仕組み","desc":"大規模モデルがどうやって「話す」ことを学ぶのかを50分で解説。用語に溺れず仕組みを知りたい人に。","series":"仕組み解説・第1回"},"ko":{"title":"한 편으로 빠르게 끝내는 대형 모델 원리","desc":"대형 모델이 어떻게 '말하기'를 배우는지 50분에 정리합니다. 용어에 휘둘리지 않고 원리를 알고 싶은 분께.","series":"원리 해설 · 1편"},"es":{"title":"Cómo funcionan los grandes modelos, en un solo vídeo","desc":"50 minutos sobre cómo los modelos aprenden a hablar. Para quien quiere el mecanismo sin ahogarse en jerga.","series":"Cómo funciona · Ep. 1"},"fr":{"title":"Comprendre les grands modèles en une vidéo","desc":"50 minutes sur la façon dont les modèles apprennent à parler. Pour ceux qui veulent le mécanisme sans jargon.","series":"Comprendre le mécanisme · Ép. 1"},"de":{"title":"Große Sprachmodelle in einem Video verstehen","desc":"50 Minuten darüber, wie Modelle wirklich sprechen lernen. Für alle, die den Mechanismus ohne Fachjargon wollen.","series":"Funktionsweise · Folge 1"}}},{"id":"s-video-4","title":"零基础用 Dify 做自己的 AI 应用","desc":"从提示词到工作流，手把手把 AI 变成能干活的东西。不用写代码，看完就能自己搭一个客服、助手或小工具。","series":"动手实操 · 第 1 集","dur":"4:23:41","src":"https://www.bilibili.com/video/BV116w5zuEbo","img":"https://i0.hdslb.com/bfs/archive/bb2d7b6f5cb6b8b668531b9264020bac77dab15a.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1794998829672,"tr":{"en":{"title":"Build your own AI app with Dify, from zero","desc":"From prompts to workflows, hands-on: turn AI into something that actually does work. No coding required.","series":"Hands-on · Ep. 1"},"ja":{"title":"ゼロからDifyでAIアプリを作る","desc":"プロンプトからワークフローまで実演。コードを書かずに、AIを実際に動く仕組みに変える方法を学べます。","series":"実践・第1回"},"ko":{"title":"제로에서 Dify로 나만의 AI 앱 만들기","desc":"프롬프트부터 워크플로까지 실습. 코딩 없이 AI를 실제로 일하는 도구로 바꾸는 방법을 배웁니다.","series":"실습 · 1편"},"es":{"title":"Crea tu propia app de IA con Dify desde cero","desc":"De los prompts a los flujos de trabajo, paso a paso: convierte la IA en algo que hace trabajo real. Sin programar.","series":"Práctica · Ep. 1"},"fr":{"title":"Créer son app d'IA avec Dify, de zéro","desc":"Des prompts aux workflows, pas à pas : transformez l'IA en outil qui travaille vraiment, sans coder.","series":"Pratique · Ép. 1"},"de":{"title":"Eigene KI-App mit Dify bauen, von null","desc":"Von Prompts bis Workflows, praxisnah: KI zu etwas machen, das wirklich arbeitet. Ohne Programmieren.","series":"Praxis · Folge 1"}}}];
+window.__SEED_VIDEOS = [{"id":"s-video-1","title":"一次看懂人工智能（科普中国）","desc":"国家级科普团队出品，33 分钟讲清 AI 是什么、能做什么、边界在哪。零基础一遍听懂，不爱看书的先看这个。","series":"科普入门 · 第 1 集","dur":"33:03","src":"https://www.bilibili.com/video/BV1134y1d72L","img":"https://i2.hdslb.com/bfs/archive/33c230315cd7dd2a974e66996b81a8cd3c48c0a1.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1795003494154,"tr":{"en":{"title":"Understand AI in one sitting (China Science Communication)","desc":"A national science team explains what AI is, what it can do and where its limits are — 33 minutes, no background needed.","series":"Science primer · Ep. 1"},"ja":{"title":"一度でわかる人工知能（中国科学普及）","desc":"国家の科学普及チームが、AIとは何か・何ができるか・限界はどこかを33分で整理。予備知識ゼロで理解できます。","series":"科学入門・第1回"},"ko":{"title":"한 번에 이해하는 인공지능 (중국 과학보급)","desc":"국가 과학보급 팀이 AI란 무엇이고 무엇을 할 수 있으며 한계가 어디인지를 33분에 정리합니다. 배경지식 없이도 이해됩니다.","series":"과학 입문 · 1편"},"es":{"title":"Entender la IA de una vez (Divulgación Científica de China)","desc":"Un equipo nacional de divulgación explica en 33 minutos qué es la IA, qué puede hacer y dónde están sus límites.","series":"Introducción científica · Ep. 1"},"fr":{"title":"Comprendre l'IA en une fois (Vulgarisation scientifique chinoise)","desc":"Une équipe nationale explique en 33 minutes ce qu'est l'IA, ce qu'elle sait faire et où sont ses limites.","series":"Initiation scientifique · Ép. 1"},"de":{"title":"KI in einem Durchgang verstehen (China Wissenschaftskommunikation)","desc":"Ein nationales Wissenschaftsteam erklärt in 33 Minuten, was KI ist, was sie kann und wo ihre Grenzen liegen.","series":"Wissenschaftliche Einführung · Folge 1"}}},{"id":"s-video-2","title":"小白人工智能第一课（北航何静）","desc":"18 分钟搭好认知框架：AI、AIGC、大模型、智能体、具身智能到底是什么关系。130 多万人在看，讲得比多数收费课清楚。","series":"科普入门 · 第 2 集","dur":"17:59","src":"https://www.bilibili.com/video/BV1xH6iBLExu","img":"https://i0.hdslb.com/bfs/archive/e71326441d4daa74da94306d5303c17a94ebc9d9.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1795003493154,"tr":{"en":{"title":"AI First Lesson for Beginners (Beihang, He Jing)","desc":"18 minutes to build your mental map: how AI, AIGC, large models, agents and embodied AI relate. Over 1.3M views.","series":"Science primer · Ep. 2"},"ja":{"title":"初心者のためのAI第一課（北京航空航天大学・何静）","desc":"18分で認知の枠組みを構築。AI・AIGC・大規模モデル・エージェント・身体性AIの関係が整理できます。130万再生超。","series":"科学入門・第2回"},"ko":{"title":"초보자를 위한 AI 첫 수업 (베이항공항공대 허징)","desc":"18분 만에 개념 지도를 완성합니다. AI, AIGC, 대형 모델, 에이전트, 구현형 AI의 관계를 정리합니다. 130만 뷰 이상.","series":"과학 입문 · 2편"},"es":{"title":"Primera clase de IA para principiantes (Beihang, He Jing)","desc":"18 minutos para armar el mapa mental: cómo se relacionan IA, AIGC, grandes modelos, agentes e IA corpórea. Más de 1,3 M de vistas.","series":"Introducción científica · Ep. 2"},"fr":{"title":"Premier cours d'IA pour débutants (Beihang, He Jing)","desc":"18 minutes pour construire votre carte mentale : rapports entre IA, AIGC, grands modèles, agents et IA incarnée.","series":"Initiation scientifique · Ép. 2"},"de":{"title":"Erste KI-Stunde für Einsteiger (Beihang, He Jing)","desc":"In 18 Minuten das mentale Modell aufbauen: wie KI, AIGC, große Modelle, Agenten und verkörperte KI zusammenhängen.","series":"Wissenschaftliche Einführung · Folge 2"}}},{"id":"s-video-7","title":"小学生也能听懂的人工智能（动画版）","desc":"全片动画，几乎不讲术语。机器学习到底在学什么、神经网络在干什么，这一集用最笨的方式讲明白了。","series":"科普入门 · 第 3 集","dur":"38:26","src":"https://www.bilibili.com/video/BV1t14y1N77Z","img":"https://i1.hdslb.com/bfs/archive/7af579bc7f03b6275dae5c707836a20d379a221d.jpg@480w_270h_1c.jpg","status":"live","at":1795003492154,"tr":{"en":{"title":"AI explained for kids (animated)","desc":"Fully animated, almost no jargon. What machine learning actually learns and what a neural network is doing — explained the simplest way.","series":"Science primer · Ep. 3"},"ja":{"title":"小学生でもわかる人工知能（アニメ版）","desc":"全編アニメで専門用語はほぼなし。機械学習が何を学ぶのか、ニューラルネットが何をしているのかを最も簡単な方法で解説。","series":"科学入門・第3回"},"ko":{"title":"초등학생도 이해하는 인공지능 (애니메이션판)","desc":"전편 애니메이션, 전문용어 거의 없음. 머신러닝이 무엇을 배우고 신경망이 무엇을 하는지 가장 쉬운 방식으로 설명합니다.","series":"과학 입문 · 3편"},"es":{"title":"IA explicada para niños (animada)","desc":"Todo animado, casi sin tecnicismos. Qué aprende realmente el machine learning y qué hace una red neuronal, explicado de la forma más simple.","series":"Introducción científica · Ep. 3"},"fr":{"title":"L'IA expliquée aux enfants (animé)","desc":"Entièrement animé, presque sans jargon. Ce que le machine learning apprend vraiment et ce que fait un réseau de neurones, expliqué simplement.","series":"Initiation scientifique · Ép. 3"},"de":{"title":"KI für Kinder erklärt (Animation)","desc":"Komplett animiert, fast ohne Fachbegriffe. Was maschinelles Lernen wirklich lernt und was ein neuronales Netz tut — möglichst einfach erklärt.","series":"Wissensgrundlage · Folge 3"}}},{"id":"s-video-3","title":"一条视频速通 AI 大模型原理","desc":"50 分钟讲透大模型到底怎么「学会」说话。不想被术语绕晕、又想知道背后原理的人，看这一条打底就够。","series":"原理拆解 · 第 1 集","dur":"51:49","src":"https://www.bilibili.com/video/BV17t4218761","img":"https://i2.hdslb.com/bfs/archive/677727fe693508fdb5dec3eecc9948cb222293ea.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1795003491154,"tr":{"en":{"title":"How large language models actually work, in one video","desc":"50 minutes on how models really learn to talk. The one to watch if you want the mechanics without drowning in jargon.","series":"How it works · Ep. 1"},"ja":{"title":"1本で速習：大規模モデルの仕組み","desc":"大規模モデルがどうやって「話す」ことを学ぶのかを50分で解説。用語に溺れず仕組みを知りたい人に。","series":"仕組み解説・第1回"},"ko":{"title":"한 편으로 빠르게 끝내는 대형 모델 원리","desc":"대형 모델이 어떻게 '말하기'를 배우는지 50분에 정리합니다. 용어에 휘둘리지 않고 원리를 알고 싶은 분께.","series":"원리 해설 · 1편"},"es":{"title":"Cómo funcionan los grandes modelos, en un solo vídeo","desc":"50 minutos sobre cómo los modelos aprenden a hablar. Para quien quiere el mecanismo sin ahogarse en jerga.","series":"Cómo funciona · Ep. 1"},"fr":{"title":"Comprendre les grands modèles en une vidéo","desc":"50 minutes sur la façon dont les modèles apprennent à parler. Pour ceux qui veulent le mécanisme sans jargon.","series":"Comprendre le mécanisme · Ép. 1"},"de":{"title":"Große Sprachmodelle in einem Video verstehen","desc":"50 Minuten darüber, wie Modelle wirklich sprechen lernen. Für alle, die den Mechanismus ohne Fachjargon wollen.","series":"Funktionsweise · Folge 1"}}},{"id":"s-video-8","title":"AI 101：人工智能系列科普（商汤教育 · 11 集）","desc":"商汤教育官方出品，11 集把 AI 的来路与去处讲成一门课。想按体系学、不想零散刷视频的，跟着这个合集走。","series":"体系课程 · 第 1 集","dur":"54:34","src":"https://www.bilibili.com/video/BV1EE411W7V3","img":"https://i2.hdslb.com/bfs/archive/5f0b75f53dda6841835e5d68f9b31a702ea3e661.jpg@480w_270h_1c.jpg","status":"live","at":1795003490154,"tr":{"en":{"title":"AI 101: AI explained (SenseTime Education, 11 eps)","desc":"Official series from SenseTime Education. Eleven episodes that turn AI into an actual course — for people who want a system, not scattered clips.","series":"Structured course · Ep. 1"},"ja":{"title":"AI 101：人工知能シリーズ解説（商湯教育・全11回）","desc":"商湯教育の公式シリーズ。11回でAIの来歴と行き先を一つの講座にまとめています。体系立てて学びたい人向け。","series":"体系講座・第1回"},"ko":{"title":"AI 101: 인공지능 시리즈 해설 (센스타임 교육 · 11편)","desc":"센스타임 교육 공식 시리즈. 11편으로 AI의 과거와 앞으로를 하나의 강좌로 정리합니다. 체계적으로 배우고 싶은 분께 적합합니다.","series":"체계 강좌 · 1편"},"es":{"title":"AI 101: la IA explicada (SenseTime Education, 11 eps)","desc":"Serie oficial de SenseTime Education. Once episodios que convierten la IA en un curso real, para quien quiere un sistema y no clips sueltos.","series":"Curso estructurado · Ep. 1"},"fr":{"title":"AI 101 : l'IA expliquée (SenseTime Education, 11 ép.)","desc":"Série officielle de SenseTime Education. Onze épisodes qui font de l'IA un vrai cours, pour ceux qui veulent un système et non des clips épars.","series":"Cours structuré · Ép. 1"},"de":{"title":"AI 101: KI erklärt (SenseTime Education, 11 Folgen)","desc":"Offizielle Reihe von SenseTime Education. Elf Folgen, die KI zu einem echten Kurs machen — für alle, die ein System statt einzelner Clips wollen.","series":"Strukturierter Kurs · Folge 1"}}},{"id":"s-video-4","title":"零基础用 Dify 做自己的 AI 应用","desc":"从提示词到工作流，手把手把 AI 变成能干活的东西。不用写代码，看完就能自己搭一个客服、助手或小工具。","series":"动手实操 · 第 1 集","dur":"4:23:41","src":"https://www.bilibili.com/video/BV116w5zuEbo","img":"https://i0.hdslb.com/bfs/archive/bb2d7b6f5cb6b8b668531b9264020bac77dab15a.jpg@480w_270h_1c.jpg?v=2","status":"live","at":1795003489154,"tr":{"en":{"title":"Build your own AI app with Dify, from zero","desc":"From prompts to workflows, hands-on: turn AI into something that actually does work. No coding required.","series":"Hands-on · Ep. 1"},"ja":{"title":"ゼロからDifyでAIアプリを作る","desc":"プロンプトからワークフローまで実演。コードを書かずに、AIを実際に動く仕組みに変える方法を学べます。","series":"実践・第1回"},"ko":{"title":"제로에서 Dify로 나만의 AI 앱 만들기","desc":"프롬프트부터 워크플로까지 실습. 코딩 없이 AI를 실제로 일하는 도구로 바꾸는 방법을 배웁니다.","series":"실습 · 1편"},"es":{"title":"Crea tu propia app de IA con Dify desde cero","desc":"De los prompts a los flujos de trabajo, paso a paso: convierte la IA en algo que hace trabajo real. Sin programar.","series":"Práctica · Ep. 1"},"fr":{"title":"Créer son app d'IA avec Dify, de zéro","desc":"Des prompts aux workflows, pas à pas : transformez l'IA en outil qui travaille vraiment, sans coder.","series":"Pratique · Ép. 1"},"de":{"title":"Eigene KI-App mit Dify bauen, von null","desc":"Von Prompts bis Workflows, praxisnah: KI zu etwas machen, das wirklich arbeitet. Ohne Programmieren.","series":"Praxis · Folge 1"}}}];
 
 setTimeout(function(){ var e = document.getElementById('heroSlider'); if(e) e.classList.add('hs-ready'); }, 1200);
 
