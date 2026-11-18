@@ -5301,16 +5301,17 @@ $('#publishJson').addEventListener('click', ()=>{
   const snapshot = JSON.parse(JSON.stringify(contentDB()));
   const localCount = (snapshot.videos || []).filter(v=> v.videoKey).length;
   if(localCount && !confirm('有 ' + localCount + ' 条视频存在这台电脑的浏览器里，content.json 不会带上视频文件，别人打开会显示「即将上线」。\n\n要让所有访客都能看，请把视频传到 B 站 / 对象存储，改用直链。\n\n仍要现在导出吗？')) return;
-  /* 防呆：本机某分类为空、线上却有内容 —— 导出会把线上清空，必须先警告 */
+  /* 防呆：线上有、本机没有的条目 —— 导出后它们会从线上消失，必须先警告 */
   if(PUBLISHED && PUBLISHED.content){
     const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
-    const empty = ['videos','tutorials','news'].filter(k=>{
-      const r = (PUBLISHED.content[k] || []).length;
-      return isEmptyCat(snapshot[k], k) && r > 0;
-    });
-    if(empty.length){
-      const detail = empty.map(k=> NAMES[k] + '（本机 0 条，线上 ' + (PUBLISHED.content[k]||[]).length + ' 条）').join('、');
-      if(!confirm('⚠️ 危险：这些分类你本机是空的，线上却有内容——\n\n' + detail + '\n\n现在导出，会把线上这些内容全部清空。\n\n建议先点「从线上补齐缺失内容」，把线上内容补回本机后再发布。\n\n仍要强行导出吗？')) return;
+    const lost = ['videos','tutorials','news'].map(k=>{
+      const have = new Set((snapshot[k] || []).map(x=> String((x && x.id) || '')));
+      const gone = (PUBLISHED.content[k] || []).filter(x=> x && x.id && !have.has(String(x.id)));
+      return { k, gone };
+    }).filter(g=> g.gone.length);
+    if(lost.length){
+      const detail = lost.map(g=> NAMES[g.k] + ' 会少 ' + g.gone.length + ' 条（本机 ' + (snapshot[g.k]||[]).length + ' 条 / 线上 ' + (PUBLISHED.content[g.k]||[]).length + ' 条）').join('\n');
+      if(!confirm('⚠️ 危险：你本机的条目比线上少，现在导出会让线上这些内容消失——\n\n' + detail + '\n\n建议先点「从线上补齐缺失内容」，把线上内容同步回本机后再发布。\n\n仍要强行导出吗？')) return;
     }
   }
   /* 导出副本去掉本机 videoKey：别人的浏览器里没有这个文件，留着只会报错 */
@@ -5335,7 +5336,7 @@ $('#publishJson').addEventListener('click', ()=>{
   toast('已生成 content.json，上传到网站根目录覆盖同名文件即可全站生效');
 });
 
-/* 从线上补齐缺失内容：只补本机为空的分类，绝不覆盖本机已有内容 */
+/* 从线上同步：按 id 取并集，把线上有、本机没有的条目补进来 */
 $('#pullPublished').addEventListener('click', async ()=>{
   /* 启动时那次读取可能超时/失败，这里现场重取一次，不让点击「静默失败」 */
   if(!PUBLISHED || !PUBLISHED.content){
@@ -5349,28 +5350,28 @@ $('#pullPublished').addEventListener('click', async ()=>{
   const local = contentDB();
   const remote = PUBLISHED.content;
   const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
-  const filled = [];
-  ['videos','tutorials','news'].forEach(k=>{
-    const rArr = remote[k] || [];
-    if(isEmptyCat(local[k], k) && rArr.length > 0){
-      local[k] = JSON.parse(JSON.stringify(rArr));
-      filled.push(NAMES[k] + ' ' + rArr.length + ' 条');
-    }
-  });
-  if(!filled.length){
-    const stat = ['videos','tutorials','news'].map(k=> NAMES[k] + ' 本机 ' + (local[k]||[]).length + ' 条 / 线上 ' + (remote[k]||[]).length + ' 条').join('\n');
-    alert('本机内容已经齐全，无需补齐。\n\n当前状态：\n' + stat);
+  /* 先算清楚：线上有、本机没有的条目各有多少 */
+  const gaps = ['videos','tutorials','news'].map(k=>{
+    const have = new Set((local[k] || []).map(x=> String((x && x.id) || '')));
+    const miss = (remote[k] || []).filter(x=> x && x.id && !have.has(String(x.id)));
+    return { k, miss };
+  }).filter(g=> g.miss.length);
+  const stat = ['videos','tutorials','news'].map(k=> NAMES[k] + ' 本机 ' + (local[k]||[]).length + ' 条 / 线上 ' + (remote[k]||[]).length + ' 条').join('\n');
+  if(!gaps.length){
+    alert('本机内容已经和线上一致，无需同步。\n\n当前状态：\n' + stat);
     return;
   }
-  const txt = filled.join('、');
-  if(!confirm('将从线上补齐：' + txt + '\n\n只补本机为空的分类，不会覆盖你本机已有的内容。\n\n继续吗？')) return;
+  const txt = gaps.map(g=> NAMES[g.k] + ' 补 ' + g.miss.length + ' 条').join('、');
+  const preview = gaps.map(g=> NAMES[g.k] + '：\n' + g.miss.slice(0,5).map(x=> '  · ' + String(x.title || x.id).slice(0,28)).join('\n') + (g.miss.length > 5 ? '\n  · …等 ' + g.miss.length + ' 条' : '')).join('\n\n');
+  if(!confirm('将从线上同步：' + txt + '\n\n当前状态：\n' + stat + '\n\n会补进来的内容：\n' + preview + '\n\n只新增，本机已有的不会被改动或删除。继续吗？')) return;
+  mergeRemoteIntoLocal(local, remote);
   stripForeignVideoKeys(local);
   store.set('content', local);
   if(PUBLISHED.site) store.set('site', PUBLISHED.site);
   if(PUBLISHED.sections) store.set('sections', PUBLISHED.sections);
   store.set('published_ver', PUBLISHED.publishedAt || '');
   store.set('content_seeded', true);
-  alert('已补齐：' + txt + '\n\n页面即将刷新。');
+  alert('已同步：' + txt + '\n\n页面即将刷新。');
   location.reload();
 });
 
@@ -7038,27 +7039,36 @@ function isEmptyCat(list, kind){
 
 /* 自动补齐：站长本机某分类为空、线上却有内容时，自动从线上补回。
    只补空，不动本机已有内容——避免「手工填表单」和「点按钮没反应」两种麻烦。 */
+/* 把线上有、本机没有的条目按 id 并进来（取并集）。
+   本机已有的原样保留 —— 既不会丢掉线上内容，也不会冲掉你没发布的新稿。 */
+function mergeRemoteIntoLocal(local, remote){
+  const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
+  const added = [];
+  ['videos','tutorials','news'].forEach(k=>{
+    if(!Array.isArray(local[k])) local[k] = [];
+    const have = new Set(local[k].map(x=> String((x && x.id) || '')));
+    const incoming = (remote[k] || []).filter(x=> x && x.id && !have.has(String(x.id)));
+    if(incoming.length){
+      incoming.forEach(x=> local[k].push(JSON.parse(JSON.stringify(x))));
+      added.push(NAMES[k] + ' +' + incoming.length + ' 条');
+    }
+  });
+  return added;
+}
+
 function autoFillFromPublished(){
   if(!PUBLISHED || !PUBLISHED.content) return;
   if(!store.get('admin_session', null)) return;   // 只对站长本机生效
-  const local = contentDB(), remote = PUBLISHED.content;
-  const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
-  const filled = [];
-  ['videos','tutorials','news'].forEach(k=>{
-    const rArr = remote[k] || [];
-    if(isEmptyCat(local[k], k) && rArr.length > 0){
-      local[k] = JSON.parse(JSON.stringify(rArr));
-      filled.push(NAMES[k] + ' ' + rArr.length + ' 条');
-    }
-  });
-  if(!filled.length) return;
+  const local = contentDB();
+  const added = mergeRemoteIntoLocal(local, PUBLISHED.content);
+  if(!added.length) return;
   stripForeignVideoKeys(local);
   store.set('content', local);
   if(PUBLISHED.site) store.set('site', PUBLISHED.site);
   if(PUBLISHED.sections) store.set('sections', PUBLISHED.sections);
   store.set('published_ver', PUBLISHED.publishedAt || '');
   store.set('content_seeded', true);
-  setTimeout(()=> toast('已自动从线上补齐：' + filled.join('、')), 1200);
+  setTimeout(()=> toast('已从线上同步：' + added.join('、')), 1200);
 }
 
 /* 内嵌种子兜底：content.json 读不到时，用页面自带的视频数据补齐本机后台 */
