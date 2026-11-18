@@ -1993,6 +1993,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
       <div class="alist" id="recentCmts"></div>
       <div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap">
         <button class="mini" id="publishJson">发布为 content.json（所有人可见）</button>
+        <button class="mini" id="pullPublished">从线上补齐缺失内容</button>
         <button class="mini" id="exportAll">导出备份（JSON）</button>
         <button class="mini" id="importAll">导入数据备份</button>
         <input type="file" id="importAllFile" accept="application/json,.json" hidden>
@@ -5300,6 +5301,18 @@ $('#publishJson').addEventListener('click', ()=>{
   const snapshot = JSON.parse(JSON.stringify(contentDB()));
   const localCount = (snapshot.videos || []).filter(v=> v.videoKey).length;
   if(localCount && !confirm('有 ' + localCount + ' 条视频存在这台电脑的浏览器里，content.json 不会带上视频文件，别人打开会显示「即将上线」。\n\n要让所有访客都能看，请把视频传到 B 站 / 对象存储，改用直链。\n\n仍要现在导出吗？')) return;
+  /* 防呆：本机某分类为空、线上却有内容 —— 导出会把线上清空，必须先警告 */
+  if(PUBLISHED && PUBLISHED.content){
+    const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
+    const empty = ['videos','tutorials','news'].filter(k=>{
+      const l = (snapshot[k] || []).length, r = (PUBLISHED.content[k] || []).length;
+      return l === 0 && r > 0;
+    });
+    if(empty.length){
+      const detail = empty.map(k=> NAMES[k] + '（本机 0 条，线上 ' + (PUBLISHED.content[k]||[]).length + ' 条）').join('、');
+      if(!confirm('⚠️ 危险：这些分类你本机是空的，线上却有内容——\n\n' + detail + '\n\n现在导出，会把线上这些内容全部清空。\n\n建议先点「从线上补齐缺失内容」，把线上内容补回本机后再发布。\n\n仍要强行导出吗？')) return;
+    }
+  }
   /* 导出副本去掉本机 videoKey：别人的浏览器里没有这个文件，留着只会报错 */
   (snapshot.videos || []).forEach(v=>{
     if(v.videoKey){ delete v.videoKey; v.src = v.src || ''; }
@@ -5320,6 +5333,36 @@ $('#publishJson').addEventListener('click', ()=>{
   a.click();
   URL.revokeObjectURL(a.href);
   toast('已生成 content.json，上传到网站根目录覆盖同名文件即可全站生效');
+});
+
+/* 从线上补齐缺失内容：只补本机为空的分类，绝不覆盖本机已有内容 */
+$('#pullPublished').addEventListener('click', ()=>{
+  if(!PUBLISHED || !PUBLISHED.content){
+    toast('没读到线上 content.json，请确认网站根目录已上传该文件，然后刷新页面');
+    return;
+  }
+  const local = contentDB();
+  const remote = PUBLISHED.content;
+  const NAMES = { videos:'视频', tutorials:'教学', news:'资讯' };
+  const filled = [];
+  ['videos','tutorials','news'].forEach(k=>{
+    const lLen = (local[k] || []).length, rArr = remote[k] || [];
+    if(lLen === 0 && rArr.length > 0){
+      local[k] = JSON.parse(JSON.stringify(rArr));
+      filled.push(NAMES[k] + ' ' + rArr.length + ' 条');
+    }
+  });
+  if(!filled.length){ toast('本机内容已经齐全，无需补齐'); return; }
+  const txt = filled.join('、');
+  if(!confirm('将从线上补齐：' + txt + '\n\n只补本机为空的分类，不会覆盖你本机已有的内容。\n\n继续吗？')) return;
+  stripForeignVideoKeys(local);
+  store.set('content', local);
+  if(PUBLISHED.site) store.set('site', PUBLISHED.site);
+  if(PUBLISHED.sections) store.set('sections', PUBLISHED.sections);
+  store.set('published_ver', PUBLISHED.publishedAt || '');
+  store.set('content_seeded', true);
+  toast('已补齐 ' + txt + '，正在刷新…');
+  setTimeout(()=> location.reload(), 900);
 });
 
 /* 导入备份：手机录完 → 导出 JSON → 电脑导入 → 发布 */
