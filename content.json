@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "publishedAt": "2026-11-18T10:01:31.391Z",
+  "publishedAt": "2026-11-18T10:47:12.000Z",
   "by": "xkm",
   "note": "",
   "site": {
@@ -576,130 +576,173 @@
     "videos": [
       {
         "id": "s-video-1",
-        "title": "5 分钟看懂：哪些 AI 真的免费",
-        "desc": "一节课说清免费版、试用额度、隐藏收费的区别，从此不再被“限时免费”套住。",
-        "series": "免费额度专题 · 第 1 集",
-        "dur": "06:12",
-        "src": "",
-        "img": "",
+        "title": "一次看懂人工智能（科普中国）",
+        "desc": "国家级科普团队出品，33 分钟讲清 AI 是什么、能做什么、边界在哪。零基础一遍听懂，不爱看书的先看这个。",
+        "series": "科普入门 · 第 1 集",
+        "dur": "33:03",
+        "src": "https://www.bilibili.com/video/BV1134y1d72L",
+        "img": "https://i2.hdslb.com/bfs/archive/33c230315cd7dd2a974e66996b81a8cd3c48c0a1.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1794991623804,
+        "at": 1794998832672,
         "tr": {
           "en": {
-            "title": "Five minutes: what AI is really free",
-            "desc": "One lesson on free tiers, trial credits and hidden charges — so “limited-time free” never traps you again.",
-            "series": "Free-tier series · Ep. 1"
+            "title": "Understand AI in one sitting (China Science Communication)",
+            "desc": "A national science team explains what AI is, what it can do and where its limits are — 33 minutes, no background needed.",
+            "series": "Science primer · Ep. 1"
           },
           "ja": {
-            "title": "5分でわかる：本当に無料のAI",
-            "desc": "無料版・お試し枠・隠れた課金の違いを1本で整理。「期間限定無料」に振り回されなくなります。",
-            "series": "無料枠シリーズ・第1回"
+            "title": "一度でわかる人工知能（中国科学普及）",
+            "desc": "国家の科学普及チームが、AIとは何か・何ができるか・限界はどこかを33分で整理。予備知識ゼロで理解できます。",
+            "series": "科学入門・第1回"
           },
           "ko": {
-            "title": "5분 요약: 정말 무료인 AI",
-            "desc": "무료판, 체험 한도, 숨은 과금의 차이를 한 편으로 정리합니다. 이제 ‘기간 한정 무료’에 속지 마세요.",
-            "series": "무료 한도 시리즈 · 1편"
+            "title": "한 번에 이해하는 인공지능 (중국 과학보급)",
+            "desc": "국가 과학보급 팀이 AI란 무엇이고 무엇을 할 수 있으며 한계가 어디인지를 33분에 정리합니다. 배경지식 없이도 이해됩니다.",
+            "series": "과학 입문 · 1편"
           },
           "es": {
-            "title": "Cinco minutos: qué IA es gratis de verdad",
-            "desc": "Una clase sobre versiones gratis, créditos de prueba y cargos ocultos: que el «gratis por tiempo limitado» no te engañe.",
-            "series": "Serie cuotas gratis · Ep. 1"
+            "title": "Entender la IA de una vez (Divulgación Científica de China)",
+            "desc": "Un equipo nacional de divulgación explica en 33 minutos qué es la IA, qué puede hacer y dónde están sus límites.",
+            "series": "Introducción científica · Ep. 1"
           },
           "fr": {
-            "title": "Cinq minutes : quelle IA est vraiment gratuite",
-            "desc": "Une leçon sur gratuit, crédits d'essai et frais cachés : ne vous faites plus piéger par le « gratuit limité ».",
-            "series": "Série quotas gratuits · Ép. 1"
+            "title": "Comprendre l'IA en une fois (Vulgarisation scientifique chinoise)",
+            "desc": "Une équipe nationale explique en 33 minutes ce qu'est l'IA, ce qu'elle sait faire et où sont ses limites.",
+            "series": "Initiation scientifique · Ép. 1"
           },
           "de": {
-            "title": "Fünf Minuten: Welche KI ist wirklich gratis",
-            "desc": "Eine Lektion zu Gratisversion, Testguthaben und versteckten Kosten – damit „zeitlich begrenzt gratis“ dich nicht mehr täuscht.",
-            "series": "Gratis-Kontingent · Folge 1"
+            "title": "KI in einem Durchgang verstehen (China Wissenschaftskommunikation)",
+            "desc": "Ein nationales Wissenschaftsteam erklärt in 33 Minuten, was KI ist, was sie kann und wo ihre Grenzen liegen.",
+            "series": "Wissenschaftliche Einführung · Folge 1"
           }
         }
       },
       {
         "id": "s-video-2",
-        "title": "DeepSeek 实机演示：从注册到出稿",
-        "desc": "全程录屏，不用剪辑跳步。跟着做，20 分钟完成你的第一篇 AI 辅助写作。",
-        "series": "零基础入门 · 第 2 集",
-        "dur": "12:48",
-        "src": "",
-        "img": "",
+        "title": "小白人工智能第一课（北航何静）",
+        "desc": "18 分钟搭好认知框架：AI、AIGC、大模型、智能体、具身智能到底是什么关系。130 多万人在看，讲得比多数收费课清楚。",
+        "series": "科普入门 · 第 2 集",
+        "dur": "17:59",
+        "src": "https://www.bilibili.com/video/BV1xH6iBLExu",
+        "img": "https://i0.hdslb.com/bfs/archive/e71326441d4daa74da94306d5303c17a94ebc9d9.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1794991622804,
+        "at": 1794998831672,
         "tr": {
           "en": {
-            "title": "DeepSeek live demo: sign-up to first draft",
-            "desc": "Full screen recording, no jump cuts. Follow along and finish your first AI-assisted piece in 20 minutes.",
-            "series": "Zero-basics · Ep. 2"
+            "title": "AI First Lesson for Beginners (Beihang, He Jing)",
+            "desc": "18 minutes to build your mental map: how AI, AIGC, large models, agents and embodied AI relate. Over 1.3M views.",
+            "series": "Science primer · Ep. 2"
           },
           "ja": {
-            "title": "DeepSeek実演：登録から初稿まで",
-            "desc": "全編スクリーン録画、カットなし。一緒に進めれば20分で最初のAI執筆が完成します。",
-            "series": "ゼロから入門・第2回"
+            "title": "初心者のためのAI第一課（北京航空航天大学・何静）",
+            "desc": "18分で認知の枠組みを構築。AI・AIGC・大規模モデル・エージェント・身体性AIの関係が整理できます。130万再生超。",
+            "series": "科学入門・第2回"
           },
           "ko": {
-            "title": "DeepSeek 실연: 가입부터 초안까지",
-            "desc": "전 과정 화면 녹화, 편집 없음. 따라 하면 20분 만에 첫 AI 글쓰기를 완성합니다.",
-            "series": "입문부터 · 2편"
+            "title": "초보자를 위한 AI 첫 수업 (베이항공항공대 허징)",
+            "desc": "18분 만에 개념 지도를 완성합니다. AI, AIGC, 대형 모델, 에이전트, 구현형 AI의 관계를 정리합니다. 130만 뷰 이상.",
+            "series": "과학 입문 · 2편"
           },
           "es": {
-            "title": "Demo de DeepSeek: del registro al borrador",
-            "desc": "Grabación completa sin cortes. Síguelo y termina tu primer texto con IA en 20 minutos.",
-            "series": "Desde cero · Ep. 2"
+            "title": "Primera clase de IA para principiantes (Beihang, He Jing)",
+            "desc": "18 minutos para armar el mapa mental: cómo se relacionan IA, AIGC, grandes modelos, agentes e IA corpórea. Más de 1,3 M de vistas.",
+            "series": "Introducción científica · Ep. 2"
           },
           "fr": {
-            "title": "Démo DeepSeek : de l'inscription au brouillon",
-            "desc": "Enregistrement intégral, sans coupes. Suivez et terminez votre premier texte assisté en 20 minutes.",
-            "series": "Débutant · Ép. 2"
+            "title": "Premier cours d'IA pour débutants (Beihang, He Jing)",
+            "desc": "18 minutes pour construire votre carte mentale : rapports entre IA, AIGC, grands modèles, agents et IA incarnée.",
+            "series": "Initiation scientifique · Ép. 2"
           },
           "de": {
-            "title": "DeepSeek live: von der Anmeldung zum Entwurf",
-            "desc": "Komplette Aufzeichnung ohne Schnitte. Mitmachen und in 20 Minuten den ersten KI-Text fertigstellen.",
-            "series": "Von null · Folge 2"
+            "title": "Erste KI-Stunde für Einsteiger (Beihang, He Jing)",
+            "desc": "In 18 Minuten das mentale Modell aufbauen: wie KI, AIGC, große Modelle, Agenten und verkörperte KI zusammenhängen.",
+            "series": "Wissenschaftliche Einführung · Folge 2"
           }
         }
       },
       {
         "id": "s-video-3",
-        "title": "Kimi 精读 100 页报告",
-        "desc": "真实合同与行业报告实操：怎么问、怎么追、怎么验证 AI 有没有在编。",
-        "series": "长文档处理 · 第 3 集",
-        "dur": "09:30",
-        "src": "",
-        "img": "",
+        "title": "一条视频速通 AI 大模型原理",
+        "desc": "50 分钟讲透大模型到底怎么「学会」说话。不想被术语绕晕、又想知道背后原理的人，看这一条打底就够。",
+        "series": "原理拆解 · 第 1 集",
+        "dur": "51:49",
+        "src": "https://www.bilibili.com/video/BV17t4218761",
+        "img": "https://i2.hdslb.com/bfs/archive/677727fe693508fdb5dec3eecc9948cb222293ea.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1794991621804,
+        "at": 1794998830672,
         "tr": {
           "en": {
-            "title": "Kimi reads a 100-page report",
-            "desc": "Real contracts and industry reports: how to ask, how to follow up, and how to check whether the AI is making things up.",
-            "series": "Long documents · Ep. 3"
+            "title": "How large language models actually work, in one video",
+            "desc": "50 minutes on how models really learn to talk. The one to watch if you want the mechanics without drowning in jargon.",
+            "series": "How it works · Ep. 1"
           },
           "ja": {
-            "title": "Kimiで100ページ報告書を精読",
-            "desc": "実際の契約書と業界レポートで、聞き方・深掘り・AIが捏造していないかの検証まで。",
-            "series": "長文処理・第3回"
+            "title": "1本で速習：大規模モデルの仕組み",
+            "desc": "大規模モデルがどうやって「話す」ことを学ぶのかを50分で解説。用語に溺れず仕組みを知りたい人に。",
+            "series": "仕組み解説・第1回"
           },
           "ko": {
-            "title": "Kimi로 100페이지 보고서 정독",
-            "desc": "실제 계약서와 업계 보고서로 묻는 법, 파고드는 법, AI가 지어냈는지 검증하는 법.",
-            "series": "긴 문서 처리 · 3편"
+            "title": "한 편으로 빠르게 끝내는 대형 모델 원리",
+            "desc": "대형 모델이 어떻게 '말하기'를 배우는지 50분에 정리합니다. 용어에 휘둘리지 않고 원리를 알고 싶은 분께.",
+            "series": "원리 해설 · 1편"
           },
           "es": {
-            "title": "Kimi lee un informe de 100 páginas",
-            "desc": "Contratos e informes reales: cómo preguntar, repreguntar y comprobar si la IA inventa.",
-            "series": "Documentos largos · Ep. 3"
+            "title": "Cómo funcionan los grandes modelos, en un solo vídeo",
+            "desc": "50 minutos sobre cómo los modelos aprenden a hablar. Para quien quiere el mecanismo sin ahogarse en jerga.",
+            "series": "Cómo funciona · Ep. 1"
           },
           "fr": {
-            "title": "Kimi lit un rapport de 100 pages",
-            "desc": "Contrats et rapports réels : comment demander, relancer et vérifier si l'IA invente.",
-            "series": "Documents longs · Ép. 3"
+            "title": "Comprendre les grands modèles en une vidéo",
+            "desc": "50 minutes sur la façon dont les modèles apprennent à parler. Pour ceux qui veulent le mécanisme sans jargon.",
+            "series": "Comprendre le mécanisme · Ép. 1"
           },
           "de": {
-            "title": "Kimi liest einen 100-Seiten-Bericht",
-            "desc": "Echte Verträge und Branchenberichte: richtig fragen, nachhaken und prüfen, ob die KI halluziniert.",
-            "series": "Lange Dokumente · Folge 3"
+            "title": "Große Sprachmodelle in einem Video verstehen",
+            "desc": "50 Minuten darüber, wie Modelle wirklich sprechen lernen. Für alle, die den Mechanismus ohne Fachjargon wollen.",
+            "series": "Funktionsweise · Folge 1"
+          }
+        }
+      },
+      {
+        "id": "s-video-4",
+        "title": "零基础用 Dify 做自己的 AI 应用",
+        "desc": "从提示词到工作流，手把手把 AI 变成能干活的东西。不用写代码，看完就能自己搭一个客服、助手或小工具。",
+        "series": "动手实操 · 第 1 集",
+        "dur": "4:23:41",
+        "src": "https://www.bilibili.com/video/BV116w5zuEbo",
+        "img": "https://i0.hdslb.com/bfs/archive/bb2d7b6f5cb6b8b668531b9264020bac77dab15a.jpg@480w_270h_1c.jpg",
+        "status": "live",
+        "at": 1794998829672,
+        "tr": {
+          "en": {
+            "title": "Build your own AI app with Dify, from zero",
+            "desc": "From prompts to workflows, hands-on: turn AI into something that actually does work. No coding required.",
+            "series": "Hands-on · Ep. 1"
+          },
+          "ja": {
+            "title": "ゼロからDifyでAIアプリを作る",
+            "desc": "プロンプトからワークフローまで実演。コードを書かずに、AIを実際に動く仕組みに変える方法を学べます。",
+            "series": "実践・第1回"
+          },
+          "ko": {
+            "title": "제로에서 Dify로 나만의 AI 앱 만들기",
+            "desc": "프롬프트부터 워크플로까지 실습. 코딩 없이 AI를 실제로 일하는 도구로 바꾸는 방법을 배웁니다.",
+            "series": "실습 · 1편"
+          },
+          "es": {
+            "title": "Crea tu propia app de IA con Dify desde cero",
+            "desc": "De los prompts a los flujos de trabajo, paso a paso: convierte la IA en algo que hace trabajo real. Sin programar.",
+            "series": "Práctica · Ep. 1"
+          },
+          "fr": {
+            "title": "Créer son app d'IA avec Dify, de zéro",
+            "desc": "Des prompts aux workflows, pas à pas : transformez l'IA en outil qui travaille vraiment, sans coder.",
+            "series": "Pratique · Ép. 1"
+          },
+          "de": {
+            "title": "Eigene KI-App mit Dify bauen, von null",
+            "desc": "Von Prompts bis Workflows, praxisnah: KI zu etwas machen, das wirklich arbeitet. Ohne Programmieren.",
+            "series": "Praxis · Folge 1"
           }
         }
       }
