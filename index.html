@@ -249,6 +249,8 @@ section.block{padding:96px 0;border-bottom:1px solid var(--line);scroll-margin-t
 }
 .badge-free{background:#111;color:#fff}
 .badge-partial{background:#fff;color:#111;border:1px solid #111}
+.tut-card.is-readable,.news-item.is-readable{cursor:pointer}
+.tut-card.is-readable:hover,.news-item.is-readable:hover{border-color:#111}
 .badge-paid{background:#fff;color:var(--ink-faint);border:1px solid var(--line)}
 .tut-card h3{font-size:20px;font-weight:700;line-height:1.4;margin-bottom:6px}
 .tut-tool{font-size:12.5px;color:var(--ink-faint);letter-spacing:.06em;margin-bottom:14px}
@@ -1292,7 +1294,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
       </span>
     </a>
     <nav class="nav" aria-label="主导航">
-      <a href="#tutorials" data-i18n="navTut">AI 教学</a>
+      <a href="#tutorials" data-i18n="navTut">什么是 AI</a>
       <a href="#news" data-i18n="navNews">AI 前沿资讯</a>
       <a href="#videos" data-i18n="navVideo">视频课堂</a>
       <a href="#official" data-i18n="navOfficial">公众号</a>
@@ -1339,7 +1341,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
 
 <!-- 移动端菜单 -->
 <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航">
-  <a href="#tutorials" data-i18n="navTut">AI 教学</a>
+  <a href="#tutorials" data-i18n="navTut">什么是 AI</a>
   <a href="#news" data-i18n="navNews">AI 前沿资讯</a>
   <a href="#videos" data-i18n="navVideo">视频课堂</a>
   <a href="#official" data-i18n="navOfficial">公众号</a>
@@ -1397,35 +1399,34 @@ details.more-fields > .inner .full{grid-column:1/-1}
     </div>
   </section>
 
-  <!-- ===== AI 教学 ===== -->
+  <!-- ===== 什么是 AI ===== -->
   <section class="block" id="tutorials">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-eyebrow" data-i18n="tutEyebrow">AI TUTORIALS</div>
-          <h2 class="sec-title" data-i18n="tutTitle">AI 教学</h2>
+          <div class="sec-eyebrow" data-i18n="tutEyebrow">WHAT IS AI</div>
+          <h2 class="sec-title" data-i18n="tutTitle">什么是 AI</h2>
         </div>
-        <div class="sec-en" data-i18n="tutSub">按类型分类：免费 / 部分免费 / 付费</div>
+        <div class="sec-en" data-i18n="tutSub">按类型分类：免费 / 付费</div>
       </div>
       <div class="content-tools">
         <div class="search-box">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-          <input type="search" id="tutSearch" placeholder="搜索教程、工具或关键词…" aria-label="搜索 AI 教学">
+          <input type="search" id="tutSearch" placeholder="搜索教程、工具或关键词…" aria-label="搜索什么是 AI">
         </div>
         <div class="filter-group">
           <span class="chip-label" aria-hidden="true">内容分类</span>
           <div class="chip-row" id="tutChips" role="group" aria-label="按类型筛选">
             <button class="chip on" data-f="all">全部<b class="chip-n"></b></button>
-            <button class="chip" data-f="free">完全免费<b class="chip-n"></b></button>
-            <button class="chip" data-f="partial">部分免费<b class="chip-n"></b></button>
-            <button class="chip" data-f="paid">付费使用<b class="chip-n"></b></button>
+            <button class="chip" data-f="free">免费<b class="chip-n"></b></button>
+            <button class="chip" data-f="paid">付费<b class="chip-n"></b></button>
           </div>
         </div>
         <span class="tools-count" id="tutCount"></span>
       </div>
       <div class="tut-grid">
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">01</span><span class="badge badge-free" data-i18n="bFree">完全免费</span></div>
+          <div class="tut-top"><span class="tut-no">01</span><span class="badge badge-free" data-i18n="bFree">免费</span></div>
           <h3>DeepSeek 零基础入门</h3>
           <div class="tut-tool">DeepSeek · 网页版 / App</div>
           <p data-i18n="tut1">从注册到深度思考模式全流程演示：提问技巧、让 AI 帮你写方案、做表格、改文案。国内直连，无需魔法上网。</p>
@@ -1436,7 +1437,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">02</span><span class="badge badge-free" data-i18n="bFree2">完全免费</span></div>
+          <div class="tut-top"><span class="tut-no">02</span><span class="badge badge-free" data-i18n="bFree2">免费</span></div>
           <h3>Kimi 长文档精读法</h3>
           <div class="tut-tool">Kimi 智能助手</div>
           <p data-i18n="tut2">把 100 页的合同、论文、报告丢给 Kimi，10 分钟提炼核心要点。教程覆盖上传、追问、交叉验证三个关键动作。</p>
@@ -1447,7 +1448,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">03</span><span class="badge badge-partial" data-i18n="bPart">部分免费</span></div>
+          <div class="tut-top"><span class="tut-no">03</span><span class="badge badge-free" data-i18n="bPart">免费</span></div>
           <h3>ChatGPT 免费额度全用法</h3>
           <div class="tut-tool">ChatGPT · Free Plan</div>
           <p data-i18n="tut3">免费账号到底能用什么？本课讲清免费版与付费版的真实差距，以及如何用免费额度完成 90% 的日常任务。</p>
@@ -1458,7 +1459,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">04</span><span class="badge badge-partial" data-i18n="bPart2">部分免费</span></div>
+          <div class="tut-top"><span class="tut-no">04</span><span class="badge badge-free" data-i18n="bPart2">免费</span></div>
           <h3>Gemini 免费上手指南</h3>
           <div class="tut-tool">Google Gemini</div>
           <p data-i18n="tut4">谷歌全家桶里的免费 AI 助手：配合 Gmail、文档、表格提效。教程包含国内可用的访问方案与替代品清单。</p>
@@ -1469,7 +1470,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">05</span><span class="badge badge-free" data-i18n="bFree3">完全免费</span></div>
+          <div class="tut-top"><span class="tut-no">05</span><span class="badge badge-free" data-i18n="bFree3">免费</span></div>
           <h3>AI 绘图：豆包 &amp; 即梦实战</h3>
           <div class="tut-tool">豆包 · 即梦 AI</div>
           <p data-i18n="tut5">不会画画也能出海报：提示词公式、风格控制、商用避坑。全部用免费额度完成，附 30 条可直接套用的提示词。</p>
@@ -1480,7 +1481,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <a class="tut-link" href="#official"><span data-i18n="goLearn">到公众号查看图文教程</span><span class="arr">→</span></a>
         </article>
         <article class="tut-card">
-          <div class="tut-top"><span class="tut-no">06</span><span class="badge badge-free" data-i18n="bFree4">完全免费</span></div>
+          <div class="tut-top"><span class="tut-no">06</span><span class="badge badge-free" data-i18n="bFree4">免费</span></div>
           <h3>AI 办公提效工作流</h3>
           <div class="tut-tool">通义千问 · WPS AI · 讯飞</div>
           <p data-i18n="tut6">周报、PPT、会议纪要、数据表——一套用免费工具搭起来的办公自动化流程，每天帮你省下 1 小时。</p>
@@ -1712,7 +1713,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
       <div>
         <h5 data-i18n="footNav">导航</h5>
         <ul>
-          <li><a href="#tutorials" data-i18n="navTut2">AI 教学</a></li>
+          <li><a href="#tutorials" data-i18n="navTut2">什么是 AI</a></li>
           <li><a href="#news" data-i18n="navNews2">AI 前沿资讯</a></li>
           <li><a href="#videos" data-i18n="navVideo2">视频课堂</a></li>
           <li><a href="#official" data-i18n="navOfficial2">公众号</a></li>
@@ -1957,7 +1958,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
     <nav id="adminNav" aria-label="后台导航">
       <button data-tab="dash" class="on">概览</button>
       <button data-tab="compose">快速发布</button>
-      <button data-tab="tut">教学内容</button>
+      <button data-tab="tut">什么是 AI</button>
       <button data-tab="news">AI 资讯</button>
       <button data-tab="video">视频</button>
       <button data-tab="site" id="tabSite">站点设置</button>
@@ -2085,9 +2086,8 @@ details.more-fields > .inner .full{grid-column:1/-1}
         <div>
           <label for="tfBadge">内容分类</label>
           <select id="tfBadge">
-            <option value="free">完全免费</option>
-            <option value="partial">部分免费</option>
-            <option value="paid">付费使用</option>
+            <option value="free">免费</option>
+            <option value="paid">付费</option>
           </select>
         </div>
         <div class="full">
@@ -2486,7 +2486,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
     <p class="sub">按「字段: 内容」粘贴，每段之间空一行。导入后立刻生成前台卡片，可再逐条编辑。</p>
     <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
       <select id="impType" class="imp-sel">
-        <option value="tut">导入到：AI 教学</option>
+        <option value="tut">导入到：什么是 AI</option>
         <option value="news">导入到：AI 资讯</option>
         <option value="video">导入到：视频课堂</option>
       </select>
@@ -2498,7 +2498,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
       <button class="mini" id="impPick" type="button">从文件读取</button>
       <input type="file" id="impFile" accept=".txt,.md,text/plain,text/markdown" hidden>
     </div>
-    <textarea id="impText" class="imp-area" placeholder="标题: DeepSeek 免费版实测&#10;工具: DeepSeek&#10;标签: 完全免费&#10;简介: 一段话说明这门课讲什么&#10;免费结论: 完全免费，无次数限制&#10;图片: https://…&#10;&#10;标题: 第二条…"></textarea>
+    <textarea id="impText" class="imp-area" placeholder="标题: DeepSeek 免费版实测&#10;工具: DeepSeek&#10;标签: 免费&#10;简介: 一段话说明这门课讲什么&#10;免费结论: 免费，无次数限制&#10;图片: https://…&#10;&#10;标题: 第二条…"></textarea>
     <div class="form-msg" id="impMsg" aria-live="polite"></div>
     <div style="display:flex;gap:10px">
       <button class="btn btn-primary btn-sm" id="impGo" type="button">开始导入</button>
@@ -2575,7 +2575,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
 /* 顺序固定：en, ja, ko, es, fr, de */
 window.XK_I18N = {
   skip: ["Skip to main content","メインコンテンツへスキップ","본문으로 건너뛰기","Ir al contenido principal","Aller au contenu principal","Zum Hauptinhalt springen"],
-  navTut: ["Tutorials","AI講座","AI 튜토리얼","Tutoriales IA","Tutoriels IA","KI-Tutorials"],
+  navTut: ["What is AI","AIとは","AI란?","Qué es la IA","Qu'est-ce que l'IA","Was ist KI"],
   navNews: ["AI News","AIニュース","AI 뉴스","Noticias IA","Actus IA","KI-News"],
   navVideo: ["Videos","動画","영상","Vídeos","Vidéos","Videos"],
   navOfficial: ["WeChat","WeChat","위챗","WeChat","WeChat","WeChat"],
@@ -2602,15 +2602,15 @@ window.XK_I18N = {
   metaNum3: ["Zero","前提知識ゼロ","진입장벽 0","Sin barreras","Zéro prérequis","Ohne Hürden"],
   meta3: ["No coding required","プログラミング不要","코딩 불필요","Sin programar","Sans coder","Ohne Programmierkenntnisse"],
 
-  tutEyebrow: ["AI TUTORIALS","AI チュートリアル","AI 튜토리얼","TUTORIALES DE IA","TUTORIELS IA","KI-TUTORIALS"],
-  tutTitle: ["AI Tutorials","AIチュートリアル","AI 튜토리얼","Tutoriales de IA","Tutoriels IA","KI-Tutorials"],
-  tutSub: ["BY TYPE · FREE / PARTLY FREE / PAID","種類別：無料 / 一部無料 / 有料","유형별: 무료 / 부분 무료 / 유료","POR TIPO · GRATIS / PARCIAL / DE PAGO","PAR TYPE · GRATUIT / PARTIEL / PAYANT","NACH TYP · GRATIS / TEILWEISE / KOSTENPFLICHTIG"],
-  bFree: ["Fully Free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  bFree2: ["Fully Free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  bFree3: ["Fully Free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  bFree4: ["Fully Free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  bPart: ["Partially Free","一部無料","부분 무료","Parcialmente gratis","Partiellement gratuit","Teilweise kostenlos"],
-  bPart2: ["Partially Free","一部無料","부분 무료","Parcialmente gratis","Partiellement gratuit","Teilweise kostenlos"],
+  tutEyebrow: ["WHAT IS AI","AIとは","AI란?","QUÉ ES LA IA","QU'EST-CE QUE L'IA","WAS IST KI"],
+  tutTitle: ["What is AI","AIとは","AI란?","Qué es la IA","Qu'est-ce que l'IA","Was ist KI"],
+  tutSub: ["BY TYPE · FREE / PAID","種類別：無料 / 有料","유형별: 무료 / 유료","POR TIPO · GRATIS / DE PAGO","PAR TYPE · GRATUIT / PAYANT","NACH TYP · GRATIS / KOSTENPFLICHTIG"],
+  bFree: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  bFree2: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  bFree3: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  bFree4: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  bPart: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  bPart2: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
   canFree: ["Free to use?","無料で使える？","무료로 쓸 수 있나요?","¿Se puede usar gratis?","Utilisable gratuitement ?","Kostenlos nutzbar?"],
   goLearn: ["Full tutorial on WeChat","WeChat公式でチュートリアルを見る","위챗에서 전체 튜토리얼 보기","Ver el tutorial completo en WeChat","Voir le tutoriel sur WeChat","Komplettes Tutorial auf WeChat"],
   tut1: [
@@ -2754,7 +2754,7 @@ window.XK_I18N = {
 
   footDesc: ["AI tutorials × frontier AI news. Zero-cost AI mastery for everyone.","AIチュートリアル × AI最新ニュース。すべての人がゼロ円でAIを使いこなせるように。","AI 튜토리얼 × AI 최신 소식. 누구나 비용 없이 AI를 쓰도록.","Tutoriales de IA × noticias de IA. Dominar la IA sin coste para todos.","Tutoriels IA × actualités IA. L'IA sans frais, pour tous.","KI-Tutorials × KI-News. KI-Kompetenz ohne Kosten für alle."],
   footNav: ["Explore","ナビ","탐색","Navegación","Navigation","Navigation"],
-  navTut2: ["Tutorials","AIチュートリアル","AI 튜토리얼","Tutoriales","Tutoriels","Tutorials"],
+  navTut2: ["What is AI","AIとは","AI란?","Qué es la IA","Qu'est-ce que l'IA","Was ist KI"],
   navNews2: ["AI News","AI最新ニュース","AI 뉴스","Noticias IA","Actualités IA","KI-News"],
   navVideo2: ["Videos","動画講座","영상 강의","Vídeos","Vidéos","Videos"],
   navOfficial2: ["WeChat Account","WeChat公式","위챗 공식계정","Cuenta de WeChat","Compte WeChat","WeChat-Konto"],
@@ -2849,9 +2849,8 @@ window.XK_DYN = {
   /* ---- 筛选 ---- */
   "全部": ["All","すべて","전체","Todo","Tout","Alle"],
   "内容分类": ["By type","種類別","유형별","Por tipo","Par type","Nach Typ"],
-  "完全免费": ["Fully free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  "部分免费": ["Partly free","一部無料","부분 무료","Parcialmente gratis","Partiellement gratuit","Teilweise kostenlos"],
-  "付费使用": ["Paid","有料","유료","De pago","Payant","Kostenpflichtig"],
+  "免费": ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
+  "付费": ["Paid","有料","유료","De pago","Payant","Kostenpflichtig"],
 
   /* ---- 卡片 ---- */
   "即将上线": ["Coming soon","公開予定","곧 공개","Próximamente","Bientôt disponible","Demnächst"],
@@ -3079,7 +3078,7 @@ window.XK_DYN = {
   "语言 Language": ["Language","言語","언어","Idioma","Langue","Sprache"],
   "搜索教程、工具或关键词…": ["Search tutorials, tools or keywords…","チュートリアル・ツール・キーワードを検索…","튜토리얼·도구·키워드 검색…","Busca tutoriales, herramientas o palabras clave…","Rechercher tutoriels, outils ou mots-clés…","Tutorials, Tools oder Stichwörter suchen…"],
   "搜索资讯关键词…": ["Search news…","ニュースを検索…","뉴스 검색…","Buscar noticias…","Rechercher dans les actualités…","News durchsuchen…"],
-  "搜索 AI 教学": ["Search tutorials","チュートリアルを検索","튜토리얼 검색","Buscar tutoriales","Rechercher des tutoriels","Tutorials suchen"],
+  "搜索什么是 AI": ["Search","検索","검색","Buscar","Rechercher","Suchen"],
   "搜索 AI 资讯": ["Search news","ニュースを検索","뉴스 검색","Buscar noticias","Rechercher des actualités","News suchen"],
   "按类型筛选": ["Filter by type","種類で絞り込む","유형별 필터","Filtrar por tipo","Filtrer par type","Nach Typ filtern"],
   "你的昵称，例如：小明同学": ["Your nickname, e.g. Alex","ニックネーム（例：さくら）","닉네임 (예: 민수)","Tu apodo, p. ej. Alex","Votre pseudo, ex. Alex","Dein Spitzname, z. B. Alex"],
@@ -3137,8 +3136,7 @@ window.XK_CC = {
 
 /* 标签 / 免费结论 固定词表 */
 window.XK_BADGE = {
-  free: ["Fully free","完全無料","완전 무료","Totalmente gratis","Entièrement gratuit","Komplett kostenlos"],
-  partial: ["Partly free","一部無料","부분 무료","Parcialmente gratis","Partiellement gratuit","Teilweise kostenlos"],
+  free: ["Free","無料","무료","Gratis","Gratuit","Kostenlos"],
   paid: ["Paid","有料","유료","De pago","Payant","Kostenpflichtig"]
 };
 window.XK_TAG = {
@@ -3299,7 +3297,7 @@ function walkAttrs(idx){
     });
   });
 }
-const CHIP_KEY = { all:'全部', free:'完全免费', partial:'部分免费', paid:'付费使用' };
+const CHIP_KEY = { all:'全部', free:'免费', paid:'付费' };
 function applyChipLang(){
   document.querySelectorAll('#tutChips .chip').forEach(c=>{
     const key = CHIP_KEY[c.dataset.f];
@@ -3513,7 +3511,7 @@ $('#cookieCustom').addEventListener('click', ()=>{
 
 /* ================= 板块设置 ================= */
 const SECTIONS = [
-  {id:'tutorials', zh:'AI 教学', desc:'按类型拆解：完全免费、部分免费与付费使用'},
+  {id:'tutorials', zh:'什么是 AI', desc:'按类型拆解：免费与付费'},
   {id:'news',      zh:'AI 前沿资讯', desc:'前沿动态与行业变化速览'},
   {id:'videos',    zh:'视频课堂',     desc:'实机演示视频，后续陆续上传'},
   {id:'official',  zh:'公众号',       desc:'二维码与关键词领取入口'},
@@ -4163,12 +4161,13 @@ function stripForeignVideoKeys(db){
 }
 
 /* ---- 前台：动态内容卡片 ---- */
-const BADGE_TEXT = { free:'完全免费', partial:'部分免费', paid:'付费使用' };
+const BADGE_TEXT = { free:'免费', paid:'付费' };
 function badgeKey(v){
   const t = String(v || '').trim();
   const low = t.toLowerCase();
-  if(low === 'free' || low === 'partial' || low === 'paid') return low;
-  if(t.indexOf('部分') > -1) return 'partial';
+  if(low === 'partial') return 'free';   /* 旧数据兼容：部分免费统一并入免费 */
+  if(low === 'free' || low === 'paid') return low;
+  if(t.indexOf('部分') > -1) return 'free';
   if(t.indexOf('付费') > -1 && t.indexOf('免费') === -1) return 'paid';
   return 'free';
 }
@@ -4194,7 +4193,8 @@ function tutCardEl(it, idx){
   const no = String((idx || 0) + 1).padStart(2, '0');
   const jump = shouldJump(it);
   const card = document.createElement('article');
-  card.className = 'tut-card' + (it.img ? ' has-cover' : '') + (jump ? ' is-link' : '');
+  card.className = 'tut-card' + (it.img ? ' has-cover' : '') + (jump ? ' is-link' : '') + (it.body ? ' is-readable' : '');
+  if(it.body) card.dataset.cid = it.id;
   card.dataset.slug = 'c-'+it.id;
   card.dataset.custom = '1';
   const title = xl(it, 'title'), desc = xl(it, 'desc');
@@ -4217,7 +4217,8 @@ function newsItemEl(it){
   const src = srcOf(it.url);
   const jump = shouldJump(it);
   const el = document.createElement('article');
-  el.className = 'news-item' + (jump ? ' is-link' : '');
+  el.className = 'news-item' + (jump ? ' is-link' : '') + (it.body ? ' is-readable' : '');
+  if(it.body) el.dataset.cid = it.id;
   el.dataset.slug = 'c-'+it.id;
   el.dataset.custom = '1';
   const title = xl(it, 'title'), desc = xl(it, 'desc');
@@ -4226,7 +4227,9 @@ function newsItemEl(it){
     <div class="news-body">
       ${coverHTML(it.img, 'news-cover')}
       <div class="news-kicker"><span class="news-tag">${esc(xtag(xl(it, 'tag') || '资讯'))}</span>${src ? srcChip(src) : ''}</div>
-      <h3><a href="${esc(it.url || '#news')}"${it.url ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(title)}</a></h3>
+      <h3>${it.body
+        ? `<a href="#read" data-read="${esc(it.id)}">${esc(title)}</a>`
+        : `<a href="${esc(it.url || '#news')}"${it.url ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(title)}</a>`}</h3>
       ${desc ? `<p>${esc(desc)}${(it.url && !it.body) ? ` <a class="inline-src" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(T('阅读原文'))} ↗</a>` : ''}</p>` : ''}
       ${it.body
         ? `<button class="read-more" type="button" data-read="${esc(it.id)}">${esc(T('站内阅读全文'))}<span class="arr">→</span></button>`
@@ -4280,7 +4283,7 @@ function videoCardEl(it){
 }
 function sortByNew(list){ return list.slice().sort((a,b)=> (b.at || 0) - (a.at || 0)); }
 
-/* ---- 前台筛选：搜索 / 内容分类（免费 · 部分免费 · 付费） ---- */
+/* ---- 前台筛选：搜索 / 内容分类（免费 · 付费） ---- */
 const FS = { tut:{ q:'', f:'all', limit:6 }, news:{ q:'', f:'all', limit:6 } };
 function haystack(it){
   const parts = [it.title, it.desc, it.tool, it.access, it.tag, it.body ? it.body.slice(0,600) : ''];
@@ -4318,7 +4321,7 @@ function renderTutorials(){
   /* 分类角标：让读者一眼看出这排是分类，而不是别的筛选 */
   const chips = $('#tutChips');
   if(chips){
-    const cnt = { all: all.length, free: 0, partial: 0, paid: 0 };
+    const cnt = { all: all.length, free: 0, paid: 0 };
     all.forEach(it=>{ const k = badgeKey(it.badge); if(cnt[k] !== undefined) cnt[k]++; });
     chips.querySelectorAll('.chip').forEach(ch=>{
       const n = ch.querySelector('.chip-n');
@@ -4370,6 +4373,9 @@ function renderNewsChips(all){
   all.forEach(i=>{ const t = (i.tag || '').trim(); if(t && t !== '资讯' && tags.indexOf(t) < 0) tags.push(t); });
   const keep = tags.slice(0, 6);
   if(FS.news.f !== 'all' && keep.indexOf(FS.news.f) < 0) FS.news.f = 'all';
+  /* 没有可用分类时（所有资讯标签都相同）隐藏筛选行，不留一个孤零零的「全部」 */
+  box.style.display = keep.length ? '' : 'none';
+  if(!keep.length){ box.innerHTML = ''; return; }
   box.innerHTML = `<button class="chip ${FS.news.f === 'all' ? 'on' : ''}" data-f="all">${esc(T('全部'))}</button>`
     + keep.map(t=>`<button class="chip ${FS.news.f === t ? 'on' : ''}" data-f="${esc(t)}">${esc(xtag(t))}</button>`).join('');
   box.querySelectorAll('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
@@ -4467,7 +4473,7 @@ function migrateContent(){
         tool:(c.querySelector('.tut-tool')||{}).textContent || '',
         desc:(c.querySelector('p')||{}).textContent || '',
         access:(c.querySelector('.tut-foot .v')||{}).textContent || '',
-        badge:badgeEl ? badgeEl.textContent.trim() : '完全免费',
+        badge:badgeEl ? badgeEl.textContent.trim() : '免费',
         link:'', img:'', status:'live', at: now - i*1000
       });
     });
@@ -4690,7 +4696,7 @@ function switchTab(tab){
   const titles = {
     dash:['概览','内容发布情况与读者互动数据'],
     compose:['快速发布','粘贴全文，自动识别标题与排版，确认即发布'],
-    tut:['教学内容','发布与管理免费 AI 课程'],
+    tut:['什么是 AI','发布与管理免费 AI 课程'],
     news:['AI 资讯','发布一条前沿资讯或行业动态'],
     video:['视频','上传视频地址或本机文件'],
     site:['站点设置','品牌文案、二维码、邮箱与首屏轮播图'],
@@ -5278,7 +5284,11 @@ function initSlides(){
 }
 document.addEventListener('click', e=>{
   const rd = e.target.closest('[data-read]');
-  if(rd){ e.preventDefault(); openRead(rd.dataset.read); }
+  if(rd){ e.preventDefault(); openRead(rd.dataset.read); return; }
+  /* 整张卡片可点：点卡片任意位置都进站内阅读（外链按钮除外） */
+  if(e.target.closest('a')) return;
+  const card = e.target.closest('.tut-card[data-cid], .news-item[data-cid]');
+  if(card){ e.preventDefault(); openRead(card.dataset.cid); }
 });
 $('#readBox').addEventListener('scroll', ()=>{
   const el = $('#readBox');
@@ -6060,9 +6070,9 @@ function inferImpact(body){
 }
 function normalizeBadge(v){
   const s = String(v || '');
-  if(/部分/.test(s)) return '部分免费';
+  if(/部分/.test(s)) return '免费';
   if(/付费|收费/.test(s) && !/免费/.test(s)) return '付费';
-  if(/免费/.test(s)) return '完全免费';
+  if(/免费/.test(s)) return '免费';
   return '';
 }
 function detectKind(text, url){
@@ -6148,7 +6158,7 @@ function parseContent(raw, opt){
   };
   if(kind === 'tut'){
     out.tool = meta.tool || '';
-    out.badge = normalizeBadge(meta.badge) || '完全免费';
+    out.badge = normalizeBadge(meta.badge) || '免费';
     out.access = meta.access || inferAccess(body) || '';
     if(!out.access) log.push(['warn','没找到「能否免费使用」的结论，已留空，可手动补一句']);
     else log.push(['ok','已提取免费结论']);
@@ -6343,7 +6353,7 @@ const CP_SAMPLE = `DeepSeek 免费版实测：我把它当成了第二个助理
 2. 追问只说"改成 300 字以内"，不要重新贴原文
 3. 重要结论让它标注出自哪一段
 
-免费结论：网页版与 App 均完全免费，无次数限制，高峰时段偶尔排队。
+免费结论：网页版与 App 均免费，无次数限制，高峰时段偶尔排队。
 
 原文链接：https://mp.weixin.qq.com/s/example`;
 function updateCpStat(){
@@ -6450,7 +6460,7 @@ function publishLinkList(status){
       img: '', status, at: Date.now() - i
     };
     if(kind === 'tut'){
-      db.tutorials.push(Object.assign(base, { tool:'', badge:'完全免费', access:'', date:'' }));
+      db.tutorials.push(Object.assign(base, { tool:'', badge:'免费', access:'', date:'' }));
     }else if(kind === 'video'){
       db.videos.push(Object.assign(base, { src:r.url, url:'', link:'', series:'', dur:'—' }));
     }else{
@@ -6477,7 +6487,7 @@ function renderPreview(r){
   const fields = r.kind === 'tut'
     ? `<div class="pv-grid">
          <label class="pv-field"><span>工具 / 平台</span><input class="cp-mini" id="pvTool" maxlength="40" value="${esc(r.tool || '')}" placeholder="例：DeepSeek · 网页版"></label>
-         <label class="pv-field"><span>免费标签</span><input class="cp-mini" id="pvBadge" maxlength="12" value="${esc(r.badge || '完全免费')}"></label>
+         <label class="pv-field"><span>免费标签</span><input class="cp-mini" id="pvBadge" maxlength="12" value="${esc(r.badge || '免费')}"></label>
          <label class="pv-field full"><span>能否免费使用（结论）</span><input class="cp-mini" id="pvAccess" maxlength="90" value="${esc(r.access || '')}" placeholder="例：网页与 App 均免费，无次数限制"></label>
        </div>`
     : r.kind === 'news'
@@ -6552,7 +6562,7 @@ function publishComposed(status){
   if(r.kind === 'tut'){
     db.tutorials.push(Object.assign(base, {
       tool: (($('#pvTool') || {}).value || r.tool || '').trim(),
-      badge: (($('#pvBadge') || {}).value || r.badge || '完全免费').trim(),
+      badge: (($('#pvBadge') || {}).value || r.badge || '免费').trim(),
       access: (($('#pvAccess') || {}).value || r.access || '').trim()
         || (body ? inferAccess(body) : (r.url ? '详见原文' : '详见正文'))
     }));
@@ -6870,7 +6880,7 @@ $('#fillGo').addEventListener('click', ()=>{
 
 /* ================= 批量导入文本 ================= */
 const IMP_SAMPLE = {
-  tut: '标题: DeepSeek 免费版实测\n工具: DeepSeek\n标签: 免费\n简介: 用真实任务跑一遍免费额度，看看高峰期限流时的替代方案。\n免费结论: 完全免费，无次数限制\n图片: \n\n标题: Kimi 长文档精读法\n工具: Kimi\n标签: 免费\n简介: 把一百页报告丢进去，十分钟提炼出要点。\n免费结论: 基础功能免费',
+  tut: '标题: DeepSeek 免费版实测\n工具: DeepSeek\n标签: 免费\n简介: 用真实任务跑一遍免费额度，看看高峰期限流时的替代方案。\n免费结论: 免费，无次数限制\n图片: \n\n标题: Kimi 长文档精读法\n工具: Kimi\n标签: 免费\n简介: 把一百页报告丢进去，十分钟提炼出要点。\n免费结论: 基础功能免费',
   news: '标题: 新一代开源模型能力逼近旗舰\n日期: 2026 · 11\n分类: 大模型\n摘要: 消费级显卡即可运行，私有 AI 成本大幅下降。\n图片: \n\n标题: 多家厂商扩大免费额度\n日期: 2026 · 10\n分类: 免费动态\n摘要: API 价格战延续，免费调用额度持续加码。',
   video: '标题: 5 分钟看懂哪些 AI 真的免费\n系列: 免费额度专题 · 第 1 集\n时长: 06:12\n简介: 一节课说清免费版、试用额度与隐藏收费的区别。\n地址: \n图片: '
 };
@@ -6918,7 +6928,7 @@ function toItem(kind, o, i){
     return Object.assign(base, {
       id:'t'+Date.now()+i,
       tool: pick(o, ['工具','平台','tool']),
-      badge: pick(o, ['标签','免费标签','badge']) || '完全免费',
+      badge: pick(o, ['标签','免费标签','badge']) || '免费',
       desc: pick(o, ['简介','描述','摘要','desc']),
       access: pick(o, ['免费结论','能否免费','access','免费']),
       body, mode:'auto', url: link, link
