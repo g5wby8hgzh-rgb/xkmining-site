@@ -1720,7 +1720,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
           <h4 id="ccCoopTitle">合作与反馈</h4>
           <p class="cd" id="ccCoopDesc">内容纠错、选题建议、课程合作、企业培训，都欢迎联系。邮件通常 <strong>48 小时内</strong>回复。</p>
           <div class="contact-links">
-            <a href="mailto:hello@yourdomain.com" id="ccMail">hello@yourdomain.com</a>
+            <a href="mailto:1094842995@qq.com" id="ccMail">1094842995@qq.com</a>
             <a href="#" id="contactMsg">在站内给我留言</a>
             <a href="#official" id="ccMore">公众号后台私信</a>
           </div>
@@ -3401,7 +3401,7 @@ function applyLang(){
   }
   /* 前台动态内容按新语言重绘 */
   renderTutorials(); renderNews(); renderVideos();
-  applyContact(getSite());
+  applyContact(siteView());
   heroRelabel();
   if($('#readMask').classList.contains('show') && typeof readId === 'string' && readId) openRead(readId);
   if($('#videoMask').classList.contains('show')) closeModal('videoMask');
@@ -5528,6 +5528,29 @@ $('#importAllFile').addEventListener('change', async e=>{
 
 /* ================= 站点设置：文案 / 二维码 / 邮箱 / 首屏图 ================= */
 function getSite(){ return store.get('site', {}); }
+/* 站点外观取值：以线上 content.json 的 site 为底，本机填过的非空字段优先。
+   站长登录后 migrateContent 不会覆盖本机数据，导致「后台填了邮箱、首页却还是旧值」，
+   这里统一兜一次：线上有值就用，本机有值就覆盖，两边都空才回落默认文案。 */
+function siteView(){
+  const remote = (PUBLISHED && PUBLISHED.site) || {};
+  const local = getSite() || {};
+  const out = {};
+  Object.keys(remote).forEach(k=>{ out[k] = remote[k]; });
+  Object.keys(local).forEach(k=>{
+    const v = local[k];
+    if(v === '' || v == null) return;
+    if(Array.isArray(v) && !v.length) return;
+    out[k] = v;
+  });
+  const cR = remote.contact || {}, cL = local.contact || {};
+  out.contact = Object.assign({}, cR);
+  Object.keys(cL).forEach(k=>{
+    const v = cL[k];
+    if(v === '' || v == null) return;
+    out.contact[k] = v;
+  });
+  return out;
+}
 function setQR(el, src){
   if(!el || !src) return;
   el.classList.add('has-img');
@@ -5749,7 +5772,7 @@ function applyContact(t){
   });
 }
 function applySite(){
-  const t = getSite();
+  const t = siteView();
   if(t.name){ document.querySelectorAll('.brand-name').forEach(n=> n.textContent = t.name); }
   if(t.sub){ document.querySelectorAll('.brand-sub').forEach(n=> n.textContent = t.sub); }
   const h1s = document.querySelectorAll('.hero-copy h1');
@@ -5919,7 +5942,7 @@ $('#heClear').addEventListener('click', ()=>{
 });
 
 function loadSiteForm(){
-  const t = getSite();
+  const t = siteView();
   $('#sfName').value = t.name || 'XKMING 的创作工坊';
   $('#sfSub').value = t.sub || 'Free AI · Insight';
   $('#sfH1').value = t.h1 || '让每一个普通人，';
