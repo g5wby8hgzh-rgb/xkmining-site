@@ -714,26 +714,48 @@ input.has-local{border-color:#111;background:#fafaf8;font-weight:600;color:#111}
 /* ========== 分享浮层 ========== */
 .share-pop{
   position:fixed;z-index:170;background:#fff;border:1px solid var(--line);
-  box-shadow:0 18px 50px rgba(0,0,0,.16);width:244px;padding:8px;display:none;
-  border-radius:var(--radius);
+  box-shadow:0 26px 64px rgba(0,0,0,.2);width:292px;display:none;
+  border-radius:14px;overflow:hidden;
 }
-.share-pop.show{display:block;animation:pop .18s var(--ease)}
-.share-pop .sp-title{
-  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
-  font-weight:700;padding:10px 12px 6px;
+.share-pop.show{display:block;animation:pop .2s var(--ease)}
+.sp-head{padding:14px 16px 12px;background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.sp-head .sp-k{font-size:9.5px;letter-spacing:.2em;color:var(--ink-faint);font-weight:700}
+.sp-head .sp-name{
+  font-size:12.5px;font-weight:600;color:#111;margin-top:5px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
+.share-pop .link-box{
+  margin:12px 12px 8px;padding:10px 12px;background:var(--bg-soft);border:1px solid var(--line);
+  font-size:11.5px;color:var(--ink-faint);word-break:break-all;line-height:1.55;
+  border-radius:8px;max-height:48px;overflow:hidden;
+}
+.sp-list{padding:2px 8px 10px}
 .share-pop button,.share-pop a{
-  display:flex;align-items:center;gap:10px;width:100%;background:transparent;border:0;
-  padding:10px 12px;font-size:13.5px;color:var(--ink-soft);text-align:left;
-  border-radius:var(--radius);transition:all .18s;
+  display:flex;align-items:center;gap:11px;width:100%;background:transparent;border:0;
+  padding:11px 10px;font-size:13.5px;color:var(--ink-soft);text-align:left;font-family:inherit;
+  border-radius:9px;transition:background .16s var(--ease),color .16s var(--ease);cursor:pointer;
 }
 .share-pop button:hover,.share-pop a:hover{background:var(--bg-soft);color:#111}
-.share-pop svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7;flex-shrink:0}
-.share-pop .link-box{
-  margin:4px 8px 8px;padding:9px 11px;background:var(--bg-soft);border:1px solid var(--line);
-  font-size:11.5px;color:var(--ink-faint);word-break:break-all;line-height:1.5;
-  max-height:52px;overflow:hidden;
+.share-pop svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;flex-shrink:0}
+.share-pop .sp-sep{height:1px;background:var(--line);margin:6px 10px}
+.share-pop .sp-key{
+  margin-left:auto;font-size:10px;letter-spacing:.08em;color:var(--ink-faint);font-weight:600;
 }
+@media (max-width:680px){
+  .share-pop{left:12px!important;right:12px;width:auto;top:auto!important;bottom:14px}
+}
+/* 二维码弹窗 */
+.qr-modal{
+  background:#fff;border-radius:16px;padding:32px 30px 26px;max-width:330px;width:100%;
+  text-align:center;position:relative;animation:pop .3s var(--ease);
+}
+.qr-modal h3{font-size:16.5px;font-weight:700;letter-spacing:-.01em;margin-top:16px}
+.qr-modal p{font-size:12.5px;color:var(--ink-faint);line-height:1.8;margin-top:8px}
+.qr-pic{
+  width:186px;height:186px;margin:0 auto;border:1px solid var(--line);border-radius:12px;
+  background:#fff;display:grid;place-items:center;overflow:hidden;padding:8px;
+}
+.qr-pic img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply}
 
 /* ========== 板块设置 ========== */
 .set-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -1885,24 +1907,45 @@ details.more-fields > .inner .full{grid-column:1/-1}
 
 <!-- ===== 分享浮层 ===== -->
 <div class="share-pop" id="sharePop" role="dialog" aria-label="转发这篇内容">
-  <div class="sp-title">转发这篇内容</div>
+  <div class="sp-head">
+    <div class="sp-k">SHARE</div>
+    <div class="sp-name" id="spName">转发这篇内容</div>
+  </div>
   <div class="link-box" id="spLink"></div>
-  <button id="spCopy">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15V4a1 1 0 011-1h9"/></svg>
-    <span>复制链接</span>
-  </button>
-  <button id="spWx">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-8.5 8.4 9 9 0 01-3.9-.9L4 20l1.1-3.6A8.3 8.3 0 014 11.5 8.4 8.4 0 0112.5 3 8.4 8.4 0 0121 11.5z"/></svg>
-    <span>分享到微信</span>
-  </button>
-  <a id="spWb" href="#" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 13c1.5 3 6.5 3 8 0"/></svg>
-    <span>分享到微博</span>
-  </a>
-  <button id="spNative" style="display:none">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
-    <span>更多分享方式</span>
-  </button>
+  <div class="sp-list">
+    <button id="spCopy">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="1"/><path d="M5 15V4a1 1 0 011-1h9"/></svg>
+      <span>复制链接</span>
+    </button>
+    <button id="spText">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+      <span>复制转发文案</span>
+      <span class="sp-key">标题 + 链接</span>
+    </button>
+    <a id="spWb" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 13c1.5 3 6.5 3 8 0"/></svg>
+      <span>分享到微博</span>
+    </a>
+    <button id="spNative" style="display:none">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+      <span>更多分享方式</span>
+    </button>
+    <div class="sp-sep"></div>
+    <button id="spQr">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h3v3h-3zM20 20h-3"/></svg>
+      <span>扫码关注公众号</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== 扫码关注公众号 ===== -->
+<div class="modal-mask" id="qrMask" role="dialog" aria-modal="true" aria-label="扫码关注公众号">
+  <div class="qr-modal">
+    <button class="modal-close" id="qrClose" aria-label="关闭">×</button>
+    <div class="qr-pic" id="qrPic"></div>
+    <h3>扫码关注公众号</h3>
+    <p>图文版首发在公众号，回复「清单」领 AI 免费额度清单。</p>
+  </div>
 </div>
 
 <!-- ===== 站内留言弹窗 ===== -->
@@ -3003,6 +3046,12 @@ window.XK_DYN = {
   "分享到微信": ["Share to WeChat","WeChatで共有","위챗으로 공유","Compartir en WeChat","Partager sur WeChat","In WeChat teilen"],
   "分享到微博": ["Share to Weibo","Weiboで共有","웨이보로 공유","Compartir en Weibo","Partager sur Weibo","In Weibo teilen"],
   "更多分享方式": ["More options","その他の共有","공유 옵션 더보기","Más opciones","Plus d'options","Weitere Optionen"],
+  "复制转发文案": ["Copy post text","投稿文をコピー","공유 문구 복사","Copiar texto","Copier le texte","Text kopieren"],
+  "标题 + 链接": ["title + link","タイトル＋リンク","제목 + 링크","título + enlace","titre + lien","Titel + Link"],
+  "扫码关注公众号": ["Follow on WeChat","WeChat公式をフォロー","위챗 공식계정 팔로우","Seguir en WeChat","Suivre sur WeChat","Auf WeChat folgen"],
+  "图文版首发在公众号，回复「清单」领 AI 免费额度清单。": ["Articles go live on WeChat first. Reply “清单” for the free AI quota list.","記事はWeChat公式で先に公開。キーワード「清单」で無料枠リストを配布。","글은 위챗 공식계정에 먼저 올라갑니다. 「清单」이라고 보내면 무료 한도 목록을 드립니다.","Los artículos salen primero en WeChat. Responde «清单» para recibir la lista de cuotas gratis.","Les articles paraissent d'abord sur WeChat. Répondez « 清单 » pour la liste des quotas gratuits.","Artikel erscheinen zuerst auf WeChat. Antworten Sie „清单“ für die Gratis-Kontingent-Liste."],
+  "二维码还没上传，可在后台「站点设置」里填写": ["No QR code yet — add one in Site settings","QRコード未設定。管理画面の「サイト設定」で登録してください","QR 코드가 없습니다. 관리자 '사이트 설정'에서 등록하세요","Aún no hay código QR: añádelo en Ajustes del sitio","Pas encore de QR code : ajoutez-le dans Réglages du site","Noch kein QR-Code – in den Website-Einstellungen hinterlegen"],
+  "转发文案已复制，粘贴到微信即可发送": ["Post text copied — paste it into WeChat","投稿文をコピーしました。WeChatに貼り付けて送信できます","공유 문구를 복사했습니다. 위챗에 붙여 넣어 보내세요","Texto copiado: pégalo en WeChat","Texte copié : collez-le dans WeChat","Text kopiert – in WeChat einfügen"],
   "隐私政策": ["Privacy Policy","プライバシーポリシー","개인정보 처리방침","Política de privacidad","Politique de confidentialité","Datenschutzerklärung"],
   "最后更新：2026 年 11 月 18 日": ["Last updated: November 18, 2026","最終更新：2026年11月18日","최종 업데이트: 2026년 11월 18일","Última actualización: 18 de noviembre de 2026","Dernière mise à jour : 18 novembre 2026","Zuletzt aktualisiert: 18. November 2026"],
   "1. 我们收集什么": ["1. What we collect","1. 収集する情報","1. 수집하는 정보","1. Qué recogemos","1. Ce que nous collectons","1. Was wir erfassen"],
@@ -3603,14 +3652,16 @@ function pillFor(slug){
 function buildEngage(slug, title){
   const bar = document.createElement('div');
   bar.className = 'engage';
+  bar.addEventListener('click', e=> e.stopPropagation());
   bar.innerHTML = `
     <button class="eng-btn like" aria-label="${L('点赞这篇内容','Like this post')}">${ICON.heart}<span class="cnt">${L('点赞','Like')}</span></button>
     <button class="eng-btn cmt" aria-label="${L('查看留言','View comments')}">${ICON.cmt}<span class="cnt">${L('留言','Comments')}</span></button>
     <button class="eng-btn share" aria-label="${L('转发这篇内容','Share this post')}">${ICON.share}<span>${L('转发','Share')}</span></button>
     <span class="eng-pill">${pillFor(slug)}</span>`;
-  bar.querySelector('.like').addEventListener('click', e=>{ e.preventDefault(); toggleLike(slug); });
-  bar.querySelector('.cmt').addEventListener('click', e=>{ e.preventDefault(); openComments(slug, title); });
-  bar.querySelector('.share').addEventListener('click', e=>{ e.preventDefault(); openShare(e.currentTarget, slug, title); });
+  /* 必须 stopPropagation：卡片本身整块可点，不拦住就会顺手打开阅读页 */
+  bar.querySelector('.like').addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); toggleLike(slug); });
+  bar.querySelector('.cmt').addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); openComments(slug, title); });
+  bar.querySelector('.share').addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); openShare(e.currentTarget, slug, title); });
   return bar;
 }
 function decorate(card, slug, title, mount){
@@ -3692,6 +3743,8 @@ function sendComment(){
 
 /* ---- 分享浮层 ---- */
 let shareSlug = null;
+let shareTitle = '';
+let shareLink = '';
 function itemBySlug(slug){
   const id = String(slug || '').replace(/^c-/, '');
   const db = contentDB();
@@ -3699,18 +3752,23 @@ function itemBySlug(slug){
 }
 function openShare(btn, slug, title){
   shareSlug = slug;
+  shareTitle = title || document.title;
   /* 外链内容优先分享原文地址：别人点开直达原平台，不用先经过本站 */
   const it = itemBySlug(slug);
-  const link = (it && it.url) ? it.url : postLink(slug);
-  $('#spLink').textContent = link.replace(/^https?:\/\//,'');
-  $('#spWb').href = 'https://service.weibo.com/share/share.php?url=' + encodeURIComponent(link) + '&title=' + encodeURIComponent(title);
+  shareLink = (it && it.url) ? it.url : postLink(slug);
+  $('#spLink').textContent = shareLink.replace(/^https?:\/\//,'');
+  const nm = $('#spName'); if(nm) nm.textContent = shareTitle;
+  $('#spWb').href = 'https://service.weibo.com/share/share.php?url=' + encodeURIComponent(shareLink) + '&title=' + encodeURIComponent(shareTitle);
   const pop = $('#sharePop');
   $('#spNative').style.display = (navigator.share ? 'flex' : 'none');
+  const qrBtn = $('#spQr'), qw = (getSite() || {}).qrWx;
+  if(qrBtn) qrBtn.style.display = qw ? 'flex' : 'none';
   pop.classList.add('show');
-  const r = btn.getBoundingClientRect(), w = 244;
+  const r = btn.getBoundingClientRect(), w = 292;
+  const h = pop.offsetHeight || 300;
   let left = Math.max(12, Math.min(r.left, window.innerWidth - w - 12));
   let top = r.bottom + 8;
-  if(top + 290 > window.innerHeight) top = Math.max(12, r.top - 290);
+  if(top + h > window.innerHeight - 12) top = Math.max(12, r.top - h - 8);
   pop.style.left = left + 'px'; pop.style.top = top + 'px';
 }
 function closeShare(){ $('#sharePop').classList.remove('show'); }
@@ -3726,13 +3784,26 @@ function copyText(text){
   document.body.removeChild(ta);
 }
 $('#spCopy').addEventListener('click', ()=>{
-  const link = postLink(shareSlug);
+  const link = shareLink || postLink(shareSlug);
   copyText(link); closeShare(); toast('链接已复制：' + link.replace(/^https?:\/\//,''));
 });
-$('#spWx').addEventListener('click', ()=>{
-  copyText(postLink(shareSlug)); closeShare();
-  toast('链接已复制，打开微信粘贴给好友或群');
+/* 转发文案：标题一行 + 链接一行，粘到微信/群里比裸链接像话得多 */
+$('#spText').addEventListener('click', ()=>{
+  const link = shareLink || postLink(shareSlug);
+  const txt = (shareTitle || document.title) + '\n' + link + '\n（来自 XKMING 创作工坊）';
+  copyText(txt); closeShare(); toast('转发文案已复制，粘贴到微信即可发送');
 });
+/* 扫码关注公众号：把「想转发」直接转成「先关注」 */
+$('#spQr').addEventListener('click', ()=>{
+  const qw = (getSite() || {}).qrWx;
+  if(!qw){ closeShare(); toast('二维码还没上传，可在后台「站点设置」里填写'); return; }
+  const pic = $('#qrPic');
+  pic.innerHTML = '<img src="' + esc(qw) + '" alt="公众号二维码">';
+  closeShare();
+  $('#qrMask').classList.add('show');
+});
+$('#qrClose').addEventListener('click', ()=> $('#qrMask').classList.remove('show'));
+$('#qrMask').addEventListener('click', e=>{ if(e.target.id === 'qrMask') e.currentTarget.classList.remove('show'); });
 $('#spNative').addEventListener('click', async ()=>{
   const slug = shareSlug, card = document.getElementById('post-'+slug);
   closeShare();
@@ -5322,8 +5393,9 @@ function initSlides(){
 document.addEventListener('click', e=>{
   const rd = e.target.closest('[data-read]');
   if(rd){ e.preventDefault(); openRead(rd.dataset.read); return; }
-  /* 整张卡片可点：点卡片任意位置都进站内阅读（外链按钮除外） */
-  if(e.target.closest('a')) return;
+  /* 整张卡片可点：点卡片任意位置都进站内阅读。
+     但卡片内的按钮 / 链接 / 互动条 / 浮层一律不触发跳转，否则点赞、留言、转发会被整卡点击吃掉。 */
+  if(e.target.closest('button, a, input, textarea, select, label, .engage, .share-pop, .drawer, .modal-mask, .read-layer, [role="dialog"]')) return;
   const card = e.target.closest('.tut-card[data-cid], .news-item[data-cid]');
   if(card){ e.preventDefault(); openRead(card.dataset.cid); }
 });
