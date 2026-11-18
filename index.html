@@ -4318,9 +4318,7 @@ function newsItemEl(it){
         ? `<a href="#read" data-read="${esc(it.id)}">${esc(title)}</a>`
         : `<a href="${esc(it.url || '#news')}"${it.url ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(title)}</a>`}</h3>
       ${desc ? `<p>${esc(desc)}${(it.url && !it.body) ? ` <a class="inline-src" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(T('阅读原文'))} ↗</a>` : ''}</p>` : ''}
-      <div class="news-foot">${it.body
-        ? `<button class="read-more" type="button" data-read="${esc(it.id)}">${esc(T('站内阅读全文'))}<span class="arr">→</span></button>`
-        : ''}</div>
+      <div class="news-foot"></div>
     </div>
     ${jumpLink(it)}`;
   return el;
