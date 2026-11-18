@@ -932,7 +932,7 @@ input.has-local{border-color:#111;background:#fafaf8;font-weight:600;color:#111}
 .admin-top h2{font-size:24px;font-weight:900;letter-spacing:-.01em}
 .admin-top .sub{font-size:12px;color:var(--ink-faint);margin-top:4px;letter-spacing:.06em}
 .arole{font-size:10.5px;border:1px solid #111;padding:5px 11px;letter-spacing:.16em;font-weight:700}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:32px}
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:32px}
 .stat{background:#fff;padding:22px 20px}
 .stat .n{font-size:30px;font-weight:900;line-height:1.1}
 .stat .l{font-size:11px;color:var(--ink-faint);letter-spacing:.12em;margin-top:6px;text-transform:uppercase}
@@ -991,6 +991,7 @@ input.has-local{border-color:#111;background:#fafaf8;font-weight:600;color:#111}
   .admin-main{padding:22px 18px 50px}
   .admin-back{display:inline-flex;align-items:center;margin:0 0 10px;padding:7px 11px;font-size:11.5px}
   .stat-grid{grid-template-columns:1fr 1fr}
+  .stat-grid .stat:last-child{grid-column:1 / -1}
   .aform{grid-template-columns:1fr}
   .cc-edit{grid-template-columns:1fr}
   .arow{grid-template-columns:1fr;gap:8px}
@@ -2062,6 +2063,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
         <div class="stat"><div class="n" id="stNews">0</div><div class="l">已发布资讯</div></div>
         <div class="stat"><div class="n" id="stVideo">0</div><div class="l">已发布视频</div></div>
         <div class="stat"><div class="n" id="stLike">0</div><div class="l">累计点赞</div></div>
+        <div class="stat"><div class="n" id="stCmt">0</div><div class="l">读者留言</div></div>
       </div>
       <div class="health-row" id="healthBox"></div>
       <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">最近留言</h3>
@@ -3648,7 +3650,7 @@ const ICON = {
    不假装成功。 */
 const Bridge = (function(){
   const SRC = 'https://xkm-bridge-50671.app.workbuddy.host/?sharecode=B5R4BF6PZQ';
-  let frame = null, seq = 0;
+  let frame = null, seq = 0, ready = false;
   const waiters = new Map();
   function ensure(){
     if(frame && frame.contentWindow) return frame;
@@ -3669,10 +3671,7 @@ const Bridge = (function(){
     });
     return frame;
   }
-  function call(op, params, timeout){
-    let f;
-    try{ f = ensure(); }catch(e){ return Promise.reject(e); }
-    const id = ++seq, ms = timeout || 25000;
+  function post(f, id, op, params, ms){
     return new Promise((resolve, reject)=>{
       const timer = setTimeout(()=>{ waiters.delete(id); reject(new Error('TIMEOUT')); }, ms);
       waiters.set(id, {
@@ -3684,7 +3683,30 @@ const Bridge = (function(){
       }catch(e){ clearTimeout(timer); waiters.delete(id); reject(e); }
     });
   }
-  return { call, ensure };
+  /* 桥接页首次加载要几秒，期间消息会发空。就绪前用短超时多试几次，就绪后一次到底 */
+  async function call(op, params, timeout){
+    let f;
+    try{ f = ensure(); }catch(e){ throw e; }
+    const ms = timeout || 25000;
+    const tries = ready ? 1 : 8;
+    const perTry = ready ? ms : Math.min(ms, 4000);
+    let lastErr = null;
+    for(let i=0;i<tries;i++){
+      try{
+        const v = await post(f, ++seq, op, params, perTry);
+        ready = true;
+        return v;
+      }catch(e){
+        lastErr = e;
+        /* 桥接页明确回了错误（如无权限），直接抛，不重试 */
+        if(e && e.message && e.message !== 'TIMEOUT') throw e;
+        await new Promise(r=> setTimeout(r, 900));
+        try{ f = ensure(); }catch(_){}
+      }
+    }
+    throw lastErr || new Error('TIMEOUT');
+  }
+  return { call, ensure, isReady: ()=> ready };
 })();
 
 /* 本机访客标识：用于「我赞过哪些」「哪条留言是我发的」，不出现在页面上 */
@@ -3760,6 +3782,8 @@ async function migrateLocalEngage(){
 
   if(allOk){
     store.del('comments');
+    store.del('likes');
+    store.del('liked');
     store.set('engage_migrated', true);
   }
 }
@@ -3781,6 +3805,9 @@ async function syncEngage(){
     const bar = card.querySelector('.engage');
     if(bar && card.dataset.slug) paintEngage(card.dataset.slug, bar);
   });
+  /* 后台概览开着的话，桥接就绪后重画一次，避免看到「读取失败」 */
+  const panel = $('#adminPanel');
+  if(panel && panel.classList.contains('show')) refreshDashEngage();
 }
 const postLink  = slug => location.origin + location.pathname + '#post-' + slug;
 /* 兼容旧调用：第二个参数（英文）不再使用，统一走 T() */
@@ -5075,6 +5102,117 @@ function renderUsers(){
       <div class="ops">${a.role === 'owner' ? '' : `<button class="mini del" data-deluser="${esc(a.u)}">移出白名单</button>`}</div>
     </div>`).join('');
 }
+function dashTitleMap(){
+  const m = {};
+  document.querySelectorAll('[data-slug]').forEach(el=>{
+    const t = el.querySelector('h3');
+    if(el.dataset.slug && t) m[el.dataset.slug] = t.textContent.trim();
+  });
+  return m;
+}
+function fmtCmtTime(s){
+  const d = new Date(s);
+  if(isNaN(d.getTime())) return String(s || '');
+  const p = n=>String(n).padStart(2,'0');
+  return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+/* 用内存缓存先画一版，避免概览空白 */
+function paintDashEngage(){
+  const likes = Object.values(likeCache).reduce((a,b)=> a + (Number(b)||0), 0);
+  const cmts = Object.values(cmtCount).reduce((a,b)=> a + (Number(b)||0), 0);
+  if($('#stLike')) $('#stLike').textContent = likes;
+  if($('#stCmt')) $('#stCmt').textContent = cmts;
+}
+/* 再去云端取真实数据重画（含最近留言列表） */
+let dashSeq = 0;
+async function refreshDashEngage(){
+  const my = ++dashSeq;
+  const box = $('#recentCmts');
+  if(box) box.innerHTML = `<div class="aempty">正在读取云端留言…</div>`;
+  try{
+    Bridge.ensure();
+    const [likes, counts, recent] = await Promise.all([
+      loadLikeCounts(true),
+      loadCommentCounts(),
+      Bridge.call('recentComments', { limit: 8 })
+    ]);
+    if(my !== dashSeq) return;
+    const totalLikes = Object.values(likes || {}).reduce((a,b)=> a + (Number(b)||0), 0);
+    const totalCmts = Object.values(counts || {}).reduce((a,b)=> a + (Number(b)||0), 0);
+    if($('#stLike')) $('#stLike').textContent = totalLikes;
+    if($('#stCmt')) $('#stCmt').textContent = totalCmts;
+    const tm = dashTitleMap();
+    const arr = Array.isArray(recent) ? recent : [];
+    if(!box) return;
+    box.innerHTML = arr.length
+      ? arr.map(c=>`<div class="arow">
+          <div><div class="tt">${esc(String(c.body || '').slice(0, 60))}</div>
+          <div class="mm">${esc(c.nick)} · ${esc(fmtCmtTime(c.created_at))}</div></div>
+          <div class="mm">${esc((tm[c.slug] || c.slug || '').slice(0, 22))}</div>
+          <div class="ops"><button class="mini del" data-dashdel="${Number(c.id)}">删除</button></div>
+        </div>`).join('')
+      : `<div class="aempty">还没有读者留言。</div>`;
+    box.querySelectorAll('[data-dashdel]').forEach(btn=>{
+      btn.addEventListener('click', ()=> dashDelComment(Number(btn.dataset.dashdel), btn));
+    });
+  }catch(e){
+    if(my !== dashSeq) return;
+    if(box) box.innerHTML = `<div class="aempty">云端留言读取失败，请检查网络后重新打开后台。</div>`;
+  }
+}
+/* 后台概览里就地输入管理密码（返回 Promise，避免原生 prompt 在移动端被拦） */
+function askPassInline(anchor){
+  return new Promise(resolve=>{
+    const row = anchor.closest('.arow');
+    if(!row) return resolve('');
+    const ops = anchor.parentElement;
+    const wrap = document.createElement('div');
+    wrap.className = 'cmt-ask';
+    wrap.style.gridColumn = '1 / -1';
+    wrap.innerHTML = `<input type="password" placeholder="输入管理密码以删除这条留言" autocomplete="off">
+      <button class="cmt-ok" type="button">确认删除</button>
+      <button class="cmt-cancel" type="button">取消</button>`;
+    if(ops) ops.style.display = 'none';
+    row.appendChild(wrap);
+    const inp = wrap.querySelector('input');
+    inp.focus();
+    let done = false;
+    const finish = v=>{ if(done) return; done = true; resolve(v); };
+    wrap.querySelector('.cmt-cancel').addEventListener('click', ()=>{ finish(''); refreshDashEngage(); });
+    wrap.querySelector('.cmt-ok').addEventListener('click', ()=> finish(inp.value.trim()));
+    inp.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.preventDefault(); finish(inp.value.trim()); }
+      if(e.key === 'Escape'){ finish(''); refreshDashEngage(); }
+    });
+  });
+}
+async function dashDelComment(id, btn){
+  let pass = adminPass();
+  if(!pass){
+    pass = await askPassInline(btn);
+    if(!pass) return;
+    rememberAdminPass(pass);
+  }
+  if(btn){ btn.disabled = true; btn.textContent = '删除中'; }
+  try{
+    const r = await Bridge.call('delComment', { id: id, visitor: visitorId(), pass: pass });
+    if(r && r.ok){
+      toast('留言已删除，别人也看不到了');
+      refreshDashEngage();
+      return;
+    }
+    if(r && r.error === 'NOT_ALLOWED'){
+      try{ sessionStorage.removeItem('xkm_admin_pass'); }catch(e){}
+      toast('管理密码不正确，请重新输入');
+      refreshDashEngage();
+      return;
+    }
+    toast('删除失败，请稍后再试');
+  }catch(e){
+    toast('删除失败，请检查网络后重试');
+  }
+  refreshDashEngage();
+}
 function renderDash(){
   const db = contentDB();
   const baseT = document.querySelectorAll('.tut-card:not([data-custom])').length;
@@ -5083,7 +5221,8 @@ function renderDash(){
   $('#stTut').textContent = baseT + db.tutorials.filter(i=>i.status!=='draft').length;
   $('#stNews').textContent = baseN + db.news.filter(i=>i.status!=='draft').length;
   $('#stVideo').textContent = baseV + db.videos.filter(i=>i.status!=='draft').length;
-  $('#stLike').textContent = Object.values(likeState()).reduce((a,b)=>a+b, 0);
+  paintDashEngage();
+  refreshDashEngage();
 
   const allItems = db.tutorials.concat(db.news).concat(db.videos);
   const nDraft = allItems.filter(i=> i.status === 'draft').length;
@@ -5097,14 +5236,6 @@ function renderDash(){
       <button type="button" class="health ${nNoTitle ? 'warn' : ''}" data-health="news"><b>${nNoTitle}</b> 条标题待补</button>`;
     hb.querySelectorAll('[data-health]').forEach(b=> b.addEventListener('click', ()=> switchTab(b.dataset.health)));
   }
-
-  const all = cmtState(), arr = [];
-  Object.keys(all).forEach(k => all[k].forEach(c => arr.push({ ...c, k })));
-  arr.sort((a,b)=> String(b.t).localeCompare(String(a.t)));
-  $('#recentCmts').innerHTML = arr.length
-    ? arr.slice(0,5).map(c=>`<div class="arow"><div><div class="tt">${esc(c.x)}</div>
-        <div class="mm">${esc(c.n)} · ${esc(c.t)}</div></div><div class="mm">${esc(c.k)}</div><div></div></div>`).join('')
-    : `<div class="aempty">还没有读者留言。</div>`;
 }
 
 /* ---- 后台：开关与路由 ---- */
