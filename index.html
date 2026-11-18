@@ -288,6 +288,21 @@ section.block{padding:96px 0;border-bottom:1px solid var(--line);scroll-margin-t
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
 }
 .news-foot{margin-top:auto;padding-top:6px}
+/* 网格补位卡：条目不满一行时补满，避免露出灰底空位 */
+.grid-filler{
+  background:#fff;display:flex;flex-direction:column;justify-content:center;gap:10px;
+  padding:32px 30px;text-decoration:none;color:inherit;position:relative;
+  transition:background .3s var(--ease);
+}
+.grid-filler:hover{background:var(--bg-soft)}
+.grid-filler b{font-size:17px;font-weight:700;line-height:1.4;display:block}
+.grid-filler p{font-size:13.5px;color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:420px}
+.grid-filler .arr{
+  font-size:13.5px;font-weight:700;display:inline-flex;align-items:center;gap:8px;
+  margin-top:2px;border-bottom:1px solid #111;align-self:flex-start;padding-bottom:3px;
+}
+.grid-filler:hover .arr span{transform:translateX(4px)}
+.grid-filler .arr span{transition:transform .25s var(--ease);display:inline-block}
 .news-foot:empty{display:none}
 .news-item .read-more{margin-top:14px}
 .news-kicker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
@@ -4317,6 +4332,20 @@ function matchNews(it){
   const q = FS.news.q;
   return !q || haystack(it).indexOf(q) > -1;
 }
+/* 条目数填不满最后一行时，补一张横跨剩余列的卡，网格不留灰洞 */
+function fillLastRow(grid, count, cols, kind){
+  const rest = count % cols;
+  if(!count || rest === 0) return;
+  const span = cols - rest;
+  const a = document.createElement('a');
+  a.className = 'grid-filler';
+  a.href = '#official';
+  a.style.gridColumn = 'span ' + span;
+  a.innerHTML = kind === 'tut'
+    ? `<b>还有更多教程在公众号</b><p>图文版与视频一起更新，关注后第一时间收到。这里只放已经验证过、能直接上手的那几篇。</p><span class="arr">去公众号看全部 <span>→</span></span>`
+    : `<b>更多资讯在公众号</b><p>站内只留值得反复看的几条，短讯和日更都发在公众号，一天一条，不刷屏。</p><span class="arr">去公众号追更 <span>→</span></span>`;
+  grid.appendChild(a);
+}
 function renderTutorials(){
   const grid = document.querySelector('.tut-grid');
   if(!grid) return;
@@ -4344,6 +4373,7 @@ function renderTutorials(){
   }
   const c = $('#tutCount');
   if(c) c.textContent = all.length ? (list.length === all.length ? `${all.length} ${T('篇')}` : `${list.length} / ${all.length} ${T('篇')}`) : '';
+  if(shown.length && list.length <= shown.length) fillLastRow(grid, shown.length, 3, 'tut');
   const more = $('#tutMore');
   if(more){
     more.innerHTML = list.length > shown.length
@@ -4370,6 +4400,7 @@ function renderNews(){
   });
   const c = $('#newsCount');
   if(c) c.textContent = all.length ? (items.length === all.length ? `${all.length} ${T('条')}` : `${items.length} / ${all.length} ${T('条')}`) : '';
+  if(shown.length && items.length <= shown.length) fillLastRow(list, shown.length, 3, 'news');
   const more = $('#newsMore');
   if(more){
     more.innerHTML = items.length > shown.length
