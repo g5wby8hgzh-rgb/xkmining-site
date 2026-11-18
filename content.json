@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "publishedAt": "2026-11-18T11:36:02.694Z",
+  "publishedAt": "2026-11-18T12:04:54.000Z",
   "by": "xkm",
   "note": "",
   "site": {
@@ -155,7 +155,7 @@
         "src": "https://www.bilibili.com/video/BV1134y1d72L",
         "img": "https://i2.hdslb.com/bfs/archive/33c230315cd7dd2a974e66996b81a8cd3c48c0a1.jpg@480w_270h_1c.jpg?v=2",
         "status": "live",
-        "at": 1794998832672,
+        "at": 1795003494154,
         "tr": {
           "en": {
             "title": "Understand AI in one sitting (China Science Communication)",
@@ -198,7 +198,7 @@
         "src": "https://www.bilibili.com/video/BV1xH6iBLExu",
         "img": "https://i0.hdslb.com/bfs/archive/e71326441d4daa74da94306d5303c17a94ebc9d9.jpg@480w_270h_1c.jpg?v=2",
         "status": "live",
-        "at": 1794998831672,
+        "at": 1795003493154,
         "tr": {
           "en": {
             "title": "AI First Lesson for Beginners (Beihang, He Jing)",
@@ -233,6 +233,49 @@
         }
       },
       {
+        "id": "s-video-7",
+        "title": "小学生也能听懂的人工智能（动画版）",
+        "desc": "全片动画，几乎不讲术语。机器学习到底在学什么、神经网络在干什么，这一集用最笨的方式讲明白了。",
+        "series": "科普入门 · 第 3 集",
+        "dur": "38:26",
+        "src": "https://www.bilibili.com/video/BV1t14y1N77Z",
+        "img": "https://i1.hdslb.com/bfs/archive/7af579bc7f03b6275dae5c707836a20d379a221d.jpg@480w_270h_1c.jpg",
+        "status": "live",
+        "tr": {
+          "en": {
+            "title": "AI explained for kids (animated)",
+            "desc": "Fully animated, almost no jargon. What machine learning actually learns and what a neural network is doing — explained the simplest way.",
+            "series": "Science primer · Ep. 3"
+          },
+          "ja": {
+            "title": "小学生でもわかる人工知能（アニメ版）",
+            "desc": "全編アニメで専門用語はほぼなし。機械学習が何を学ぶのか、ニューラルネットが何をしているのかを最も簡単な方法で解説。",
+            "series": "科学入門・第3回"
+          },
+          "ko": {
+            "title": "초등학생도 이해하는 인공지능 (애니메이션판)",
+            "desc": "전편 애니메이션, 전문용어 거의 없음. 머신러닝이 무엇을 배우고 신경망이 무엇을 하는지 가장 쉬운 방식으로 설명합니다.",
+            "series": "과학 입문 · 3편"
+          },
+          "es": {
+            "title": "IA explicada para niños (animada)",
+            "desc": "Todo animado, casi sin tecnicismos. Qué aprende realmente el machine learning y qué hace una red neuronal, explicado de la forma más simple.",
+            "series": "Introducción científica · Ep. 3"
+          },
+          "fr": {
+            "title": "L'IA expliquée aux enfants (animé)",
+            "desc": "Entièrement animé, presque sans jargon. Ce que le machine learning apprend vraiment et ce que fait un réseau de neurones, expliqué simplement.",
+            "series": "Initiation scientifique · Ép. 3"
+          },
+          "de": {
+            "title": "KI für Kinder erklärt (Animation)",
+            "desc": "Komplett animiert, fast ohne Fachbegriffe. Was maschinelles Lernen wirklich lernt und was ein neuronales Netz tut — möglichst einfach erklärt.",
+            "series": "Wissensgrundlage · Folge 3"
+          }
+        },
+        "at": 1795003492154
+      },
+      {
         "id": "s-video-3",
         "title": "一条视频速通 AI 大模型原理",
         "desc": "50 分钟讲透大模型到底怎么「学会」说话。不想被术语绕晕、又想知道背后原理的人，看这一条打底就够。",
@@ -241,7 +284,7 @@
         "src": "https://www.bilibili.com/video/BV17t4218761",
         "img": "https://i2.hdslb.com/bfs/archive/677727fe693508fdb5dec3eecc9948cb222293ea.jpg@480w_270h_1c.jpg?v=2",
         "status": "live",
-        "at": 1794998830672,
+        "at": 1795003491154,
         "tr": {
           "en": {
             "title": "How large language models actually work, in one video",
@@ -276,6 +319,49 @@
         }
       },
       {
+        "id": "s-video-8",
+        "title": "AI 101：人工智能系列科普（商汤教育 · 11 集）",
+        "desc": "商汤教育官方出品，11 集把 AI 的来路与去处讲成一门课。想按体系学、不想零散刷视频的，跟着这个合集走。",
+        "series": "体系课程 · 第 1 集",
+        "dur": "54:34",
+        "src": "https://www.bilibili.com/video/BV1EE411W7V3",
+        "img": "https://i2.hdslb.com/bfs/archive/5f0b75f53dda6841835e5d68f9b31a702ea3e661.jpg@480w_270h_1c.jpg",
+        "status": "live",
+        "tr": {
+          "en": {
+            "title": "AI 101: AI explained (SenseTime Education, 11 eps)",
+            "desc": "Official series from SenseTime Education. Eleven episodes that turn AI into an actual course — for people who want a system, not scattered clips.",
+            "series": "Structured course · Ep. 1"
+          },
+          "ja": {
+            "title": "AI 101：人工知能シリーズ解説（商湯教育・全11回）",
+            "desc": "商湯教育の公式シリーズ。11回でAIの来歴と行き先を一つの講座にまとめています。体系立てて学びたい人向け。",
+            "series": "体系講座・第1回"
+          },
+          "ko": {
+            "title": "AI 101: 인공지능 시리즈 해설 (센스타임 교육 · 11편)",
+            "desc": "센스타임 교육 공식 시리즈. 11편으로 AI의 과거와 앞으로를 하나의 강좌로 정리합니다. 체계적으로 배우고 싶은 분께 적합합니다.",
+            "series": "체계 강좌 · 1편"
+          },
+          "es": {
+            "title": "AI 101: la IA explicada (SenseTime Education, 11 eps)",
+            "desc": "Serie oficial de SenseTime Education. Once episodios que convierten la IA en un curso real, para quien quiere un sistema y no clips sueltos.",
+            "series": "Curso estructurado · Ep. 1"
+          },
+          "fr": {
+            "title": "AI 101 : l'IA expliquée (SenseTime Education, 11 ép.)",
+            "desc": "Série officielle de SenseTime Education. Onze épisodes qui font de l'IA un vrai cours, pour ceux qui veulent un système et non des clips épars.",
+            "series": "Cours structuré · Ép. 1"
+          },
+          "de": {
+            "title": "AI 101: KI erklärt (SenseTime Education, 11 Folgen)",
+            "desc": "Offizielle Reihe von SenseTime Education. Elf Folgen, die KI zu einem echten Kurs machen — für alle, die ein System statt einzelner Clips wollen.",
+            "series": "Strukturierter Kurs · Folge 1"
+          }
+        },
+        "at": 1795003490154
+      },
+      {
         "id": "s-video-4",
         "title": "零基础用 Dify 做自己的 AI 应用",
         "desc": "从提示词到工作流，手把手把 AI 变成能干活的东西。不用写代码，看完就能自己搭一个客服、助手或小工具。",
@@ -284,7 +370,7 @@
         "src": "https://www.bilibili.com/video/BV116w5zuEbo",
         "img": "https://i0.hdslb.com/bfs/archive/bb2d7b6f5cb6b8b668531b9264020bac77dab15a.jpg@480w_270h_1c.jpg?v=2",
         "status": "live",
-        "at": 1794998829672,
+        "at": 1795003489154,
         "tr": {
           "en": {
             "title": "Build your own AI app with Dify, from zero",
