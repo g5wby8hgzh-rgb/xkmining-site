@@ -1993,7 +1993,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
       <div class="alist" id="recentCmts"></div>
       <div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap">
         <button class="mini" id="publishJson">发布为 content.json（所有人可见）</button>
-        <button class="mini" id="pullPublished">从线上补齐缺失内容</button>
+        <button class="mini" id="pullPublished">从线上恢复往期内容（会补回已删的）</button>
         <button class="mini" id="exportAll">导出备份（JSON）</button>
         <button class="mini" id="importAll">导入数据备份</button>
         <input type="file" id="importAllFile" accept="application/json,.json" hidden>
@@ -4235,6 +4235,19 @@ function newsItemEl(it){
     ${jumpLink(it)}`;
   return el;
 }
+/* 封面自托管：B 站图床有防盗链，部分浏览器会 403，改用仓库内同一张图 */
+const SELF_COVERS = {
+  '33c230315cd7dd2a974e66996b81a8cd3c48c0a1':'assets/videos/33c230315cd7dd2a974e66996b81a8cd3c48c0a1.jpg',
+  'e71326441d4daa74da94306d5303c17a94ebc9d9':'assets/videos/e71326441d4daa74da94306d5303c17a94ebc9d9.jpg',
+  '677727fe693508fdb5dec3eecc9948cb222293ea':'assets/videos/677727fe693508fdb5dec3eecc9948cb222293ea.jpg',
+  'bb2d7b6f5cb6b8b668531b9264020bac77dab15a':'assets/videos/bb2d7b6f5cb6b8b668531b9264020bac77dab15a.jpg'
+};
+function coverUrl(u){
+  const s2 = String(u || '');
+  const m = s2.match(/hdslb\.com\/bfs\/archive\/([0-9a-f]+)\.jpg/i);
+  if(m && SELF_COVERS[m[1]]) return SELF_COVERS[m[1]];
+  return s2;
+}
 function videoCardEl(it){
   const b = document.createElement('article');
   b.className = 'video-card';
@@ -4246,8 +4259,9 @@ function videoCardEl(it){
   b.dataset.custom = '1';
   const local = !!it.videoKey;
   const playable = !!(it.src || it.videoKey);
+  const cImg = coverUrl(it.img);
   b.innerHTML = `
-    <div class="poster ${it.img ? 'has-img' : ''}" ${it.img ? `style="background-image:url('${esc(it.img)}');background-size:cover;background-position:center"` : ''}>
+    <div class="poster ${cImg ? 'has-img' : ''}" ${cImg ? `style="background-image:url('${esc(cImg)}');background-size:cover;background-position:center"` : ''}>
       <video class="vprev" muted playsinline loop preload="none" aria-hidden="true"></video>
       ${playable ? '' : `<span class="soon">${esc(T('即将上线'))}</span>`}
       <span class="dur">${esc(it.dur || '—')}</span>
@@ -5311,7 +5325,7 @@ $('#publishJson').addEventListener('click', ()=>{
     }).filter(g=> g.gone.length);
     if(lost.length){
       const detail = lost.map(g=> NAMES[g.k] + ' 会少 ' + g.gone.length + ' 条（本机 ' + (snapshot[g.k]||[]).length + ' 条 / 线上 ' + (PUBLISHED.content[g.k]||[]).length + ' 条）').join('\n');
-      if(!confirm('⚠️ 危险：你本机的条目比线上少，现在导出会让线上这些内容消失——\n\n' + detail + '\n\n建议先点「从线上补齐缺失内容」，把线上内容同步回本机后再发布。\n\n仍要强行导出吗？')) return;
+      if(!confirm('注意：本机条目比线上少，导出后线上会同步减少——\n\n' + detail + '\n\n如果这些正是你删掉的旧内容，点「确定」即可。\n如果不确定，点「取消」，先点「导出备份（JSON）」存一份再操作。\n\n继续导出吗？')) return;
     }
   }
   /* 导出副本去掉本机 videoKey：别人的浏览器里没有这个文件，留着只会报错 */
@@ -7092,7 +7106,6 @@ function seedVideosFallback(){
   updateLinkHint('#nfLink','#nfLinkHint','news');
   updateCpStat();
   migrateContent();
-  autoFillFromPublished();
   seedVideosFallback();
   const seedDb = contentDB();
   if(attachSeedTr(seedDb)) saveContentDB(seedDb);
