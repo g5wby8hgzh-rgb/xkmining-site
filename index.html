@@ -2065,6 +2065,7 @@ details.more-fields > .inner .full{grid-column:1/-1}
         <div class="stat"><div class="n" id="stLike">0</div><div class="l">累计点赞</div></div>
         <div class="stat"><div class="n" id="stCmt">0</div><div class="l">读者留言</div></div>
       </div>
+      <p class="a-hint" style="margin:-18px 0 26px">「已发布」按线上 content.json 统计，和访客实际看到的一致；点赞与留言是云端实时数据。本机还有多少条没发出去，看下面这行状态。</p>
       <div class="health-row" id="healthBox"></div>
       <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">最近留言</h3>
       <div class="alist" id="recentCmts"></div>
@@ -5218,9 +5219,17 @@ function renderDash(){
   const baseT = document.querySelectorAll('.tut-card:not([data-custom])').length;
   const baseN = document.querySelectorAll('.news-item:not([data-custom])').length;
   const baseV = document.querySelectorAll('.video-card:not([data-custom])').length;
-  $('#stTut').textContent = baseT + db.tutorials.filter(i=>i.status!=='draft').length;
-  $('#stNews').textContent = baseN + db.news.filter(i=>i.status!=='draft').length;
-  $('#stVideo').textContent = baseV + db.videos.filter(i=>i.status!=='draft').length;
+  /* 三项内容统计以「线上已发布」为准：读 content.json 快照，跟访客看到的完全一致。
+     快照拿不到（离线/首次访问失败）时才退回本机内容库计数。 */
+  const pub = (PUBLISHED && PUBLISHED.content) ? PUBLISHED.content : null;
+  const pubN = k=>{
+    if(!pub || !Array.isArray(pub[k])) return null;
+    return pub[k].filter(i=> i && i.status !== 'draft').length;
+  };
+  const nT = pubN('tutorials'), nN = pubN('news'), nV = pubN('videos');
+  $('#stTut').textContent = (nT !== null) ? nT : (baseT + db.tutorials.filter(i=>i.status!=='draft').length);
+  $('#stNews').textContent = (nN !== null) ? nN : (baseN + db.news.filter(i=>i.status!=='draft').length);
+  $('#stVideo').textContent = (nV !== null) ? nV : (baseV + db.videos.filter(i=>i.status!=='draft').length);
   paintDashEngage();
   refreshDashEngage();
 
