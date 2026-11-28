@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "publishedAt": "2026-11-28T03:25:32.000Z",
+  "publishedAt": "2026-11-28T03:26:26.000Z",
   "by": "xkm",
   "note": "attach covers 2026-11-27T07:45:40.000Z",
   "site": {
@@ -593,49 +593,6 @@
     "videos": [
       {
         "id": "s-video-1",
-        "title": "零基础学会AI绘画：Stable Diffusion保姆级入门",
-        "desc": "Nenly同学的B站首套系统AI绘画课，从原理、安装到出图流程手把手带练Stable Diffusion，被称为最容易上手的AI绘画教程。适合想动手玩AI绘画、完全没有基础的创作者。",
-        "series": "动手实操 · 第 6 集",
-        "dur": "17:53",
-        "src": "https://www.bilibili.com/video/BV1As4y127HW",
-        "img": "https://i2.hdslb.com/bfs/archive/d2a3f1cf45a1173e34096d412ee18ea393b2a585.jpg@480w_270h_1c.jpg",
-        "status": "live",
-        "at": 1795836332346,
-        "tr": {
-          "en": {
-            "title": "Learn AI Art from Zero: A Beginner's Guide to Stable Diffusion",
-            "desc": "Nenly's first systematic AI art course on Bilibili walks you through Stable Diffusion step by step — principles, installation, and image generation. Known as the most beginner-friendly tutorial. For creators who want to try AI art with zero background.",
-            "series": "Hands-On · Ep. 6"
-          },
-          "ja": {
-            "title": "ゼロから学ぶAIイラスト：Stable Diffusion入門",
-            "desc": "NenlyさんのB站初の体系的AIイラスト講座。原理・インストール・生成までStable Diffusionを手取り足取り指南。最も入門しやすい教材と評判。ゼロからAIアートを試したい創作者向け。",
-            "series": "実践講座 · 第6回"
-          },
-          "ko": {
-            "title": "기초부터 AI 그림 배우기: Stable Diffusion 입문",
-            "desc": "Nenly의 B站 첫 체계적 AI 그림 강좌. 원리, 설치, 생성까지 Stable Diffusion을 단계별로 지도합니다. 가장 입문하기 쉬운 튜토리얼로 알려졌습니다. 기초 없이 AI 그림을 시작하고 싶은 창작자에게.",
-            "series": "실습 강좌 · 6강"
-          },
-          "es": {
-            "title": "Aprende arte con IA desde cero: guía de Stable Diffusion",
-            "desc": "El primer curso sistemático de arte con IA de Nenly en Bilibili: principios, instalación y generación de imágenes con Stable Diffusion, paso a paso. El tutorial más accesible para principiantes. Para creadores que quieren probar sin experiencia.",
-            "series": "Práctica · Ep. 6"
-          },
-          "fr": {
-            "title": "L'art généré par IA dès zéro : guide de Stable Diffusion",
-            "desc": "Le premier cours structuré d'art IA de Nenly sur Bilibili : principes, installation et génération avec Stable Diffusion, pas à pas. Réputé le plus accessible. Pour les créateurs qui veulent se lancer sans base.",
-            "series": "Pratique · Ép. 6"
-          },
-          "de": {
-            "title": "KI-Kunst von Grund auf lernen: Stable Diffusion für Einsteiger",
-            "desc": "Nenlys erster systematischer KI-Kunst-Kurs auf Bilibili: Prinzipien, Installation und Bilderzeugung mit Stable Diffusion, Schritt für Schritt. Gilt als das einsteigerfreundlichste Tutorial. Für Kreative ohne Vorkenntnisse.",
-            "series": "Praxis · Folge 6"
-          }
-        }
-      },
-      {
-        "id": "s-video-2",
         "title": "人工智能发展到什么程度了？是不是太快了点？",
         "desc": "小Lin说用近20分钟梳理人工智能这几年的真实进展——从大模型能力到落地场景，节奏快、数据扎实，帮你判断AI到底走到哪一步。适合想建立整体认知、又不想啃论文的普通观众。",
         "series": "科普入门 · 第 1 集",
@@ -643,7 +600,7 @@
         "src": "https://www.bilibili.com/video/BV1fs4y1d7ex",
         "img": "https://i0.hdslb.com/bfs/archive/845ad3b4aed2f1ed71fe68d3e76f453098447b2d.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1795836331346,
+        "at": 1795836386697,
         "tr": {
           "en": {
             "title": "How Far Has AI Come? Is It Moving Too Fast?",
@@ -678,7 +635,7 @@
         }
       },
       {
-        "id": "s-video-3",
+        "id": "s-video-2",
         "title": "90分钟搞懂人工智能和神经网络（清华博士）",
         "desc": "清华博士漫士沉思录用90分钟把人工智能和神经网络从头讲透，从神经元到深度学习层层推进，逻辑清晰、比喻生动。适合想系统补齐AI底层认知、愿意花整块时间学习的观众。",
         "series": "体系课程 · 第 2 集",
@@ -686,7 +643,7 @@
         "src": "https://www.bilibili.com/video/BV1atCRYsE7x",
         "img": "https://i2.hdslb.com/bfs/archive/3fe4d87db7573fc74c8a39bd3a75f6660c1194ea.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1795836330346,
+        "at": 1795836385697,
         "tr": {
           "en": {
             "title": "Understand AI and Neural Networks in 90 Minutes (by a Tsinghua PhD)",
@@ -721,7 +678,7 @@
         }
       },
       {
-        "id": "s-video-4",
+        "id": "s-video-3",
         "title": "Transformer从零详细解读：可能是最通俗易懂的一版",
         "desc": "DASOU讲AI用43分钟拆解大模型的核心架构Transformer，从注意力机制到编码器与解码器逐步讲清，号称最容易听懂的一版。适合想理解大模型原理、又不排斥一点技术细节的学习者。",
         "series": "原理拆解 · 第 3 集",
@@ -729,7 +686,7 @@
         "src": "https://www.bilibili.com/video/BV1Di4y1c7Zm",
         "img": "https://i1.hdslb.com/bfs/archive/4c1359515db520c1f62027976e2346bd71503950.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1795836329346,
+        "at": 1795836384697,
         "tr": {
           "en": {
             "title": "Transformer Explained from Scratch: Perhaps the Easiest Version",
@@ -764,7 +721,7 @@
         }
       },
       {
-        "id": "s-video-5",
+        "id": "s-video-4",
         "title": "一小时从函数到 Transformer（闪客）",
         "desc": "飞天闪客从一个最简单的函数出发，用一小时一步步推导出Transformer的全貌，把数学直觉和模型结构串成一条线。适合想搞懂“AI为什么能学会”、喜欢追根溯源的观众。",
         "series": "原理拆解 · 第 4 集",
@@ -772,7 +729,7 @@
         "src": "https://www.bilibili.com/video/BV1NCgVzoEG9",
         "img": "https://i0.hdslb.com/bfs/archive/64dad0d281eb34c7d870e1e5e51cb01b0e93a6e8.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1795836328346,
+        "at": 1795836383697,
         "tr": {
           "en": {
             "title": "From Functions to Transformer in One Hour (by Flash)",
@@ -807,7 +764,7 @@
         }
       },
       {
-        "id": "s-video-6",
+        "id": "s-video-5",
         "title": "超全豆包使用指南：手机、电脑、用法全打通",
         "desc": "UP主把豆包在手机和电脑上的用法从头演示一遍，覆盖日常问答、办公写作到文件处理，专讲不懂技术的普通人怎么用。适合零基础、想把AI真正用起来提升效率的普通人。",
         "series": "动手实操 · 第 5 集",
@@ -815,7 +772,7 @@
         "src": "https://www.bilibili.com/video/BV1Qg6iBXEVp",
         "img": "https://i0.hdslb.com/bfs/archive/1f507e616cd54b89941d1371648998405b11dc0d.jpg@480w_270h_1c.jpg",
         "status": "live",
-        "at": 1795836327346,
+        "at": 1795836382697,
         "tr": {
           "en": {
             "title": "The Complete Doubao Guide: Phone, PC, and Everything in Between",
@@ -846,6 +803,49 @@
             "title": "Der komplette Doubao-Guide: Handy, PC und alle Funktionen",
             "desc": "Der Creator zeigt Doubao auf Handy und PC von Grund auf – Alltagsfragen, Büro-Texte, Dateien – speziell für Nicht-Techniker. Ideal für Einsteiger, die KI wirklich nutzen wollen.",
             "series": "Praxis · Folge 5"
+          }
+        }
+      },
+      {
+        "id": "s-video-6",
+        "title": "零基础学会AI绘画：Stable Diffusion保姆级入门",
+        "desc": "Nenly同学的B站首套系统AI绘画课，从原理、安装到出图流程手把手带练Stable Diffusion，被称为最容易上手的AI绘画教程。适合想动手玩AI绘画、完全没有基础的创作者。",
+        "series": "动手实操 · 第 6 集",
+        "dur": "17:53",
+        "src": "https://www.bilibili.com/video/BV1As4y127HW",
+        "img": "https://i2.hdslb.com/bfs/archive/d2a3f1cf45a1173e34096d412ee18ea393b2a585.jpg@480w_270h_1c.jpg",
+        "status": "live",
+        "at": 1795836381697,
+        "tr": {
+          "en": {
+            "title": "Learn AI Art from Zero: A Beginner's Guide to Stable Diffusion",
+            "desc": "Nenly's first systematic AI art course on Bilibili walks you through Stable Diffusion step by step — principles, installation, and image generation. Known as the most beginner-friendly tutorial. For creators who want to try AI art with zero background.",
+            "series": "Hands-On · Ep. 6"
+          },
+          "ja": {
+            "title": "ゼロから学ぶAIイラスト：Stable Diffusion入門",
+            "desc": "NenlyさんのB站初の体系的AIイラスト講座。原理・インストール・生成までStable Diffusionを手取り足取り指南。最も入門しやすい教材と評判。ゼロからAIアートを試したい創作者向け。",
+            "series": "実践講座 · 第6回"
+          },
+          "ko": {
+            "title": "기초부터 AI 그림 배우기: Stable Diffusion 입문",
+            "desc": "Nenly의 B站 첫 체계적 AI 그림 강좌. 원리, 설치, 생성까지 Stable Diffusion을 단계별로 지도합니다. 가장 입문하기 쉬운 튜토리얼로 알려졌습니다. 기초 없이 AI 그림을 시작하고 싶은 창작자에게.",
+            "series": "실습 강좌 · 6강"
+          },
+          "es": {
+            "title": "Aprende arte con IA desde cero: guía de Stable Diffusion",
+            "desc": "El primer curso sistemático de arte con IA de Nenly en Bilibili: principios, instalación y generación de imágenes con Stable Diffusion, paso a paso. El tutorial más accesible para principiantes. Para creadores que quieren probar sin experiencia.",
+            "series": "Práctica · Ep. 6"
+          },
+          "fr": {
+            "title": "L'art généré par IA dès zéro : guide de Stable Diffusion",
+            "desc": "Le premier cours structuré d'art IA de Nenly sur Bilibili : principes, installation et génération avec Stable Diffusion, pas à pas. Réputé le plus accessible. Pour les créateurs qui veulent se lancer sans base.",
+            "series": "Pratique · Ép. 6"
+          },
+          "de": {
+            "title": "KI-Kunst von Grund auf lernen: Stable Diffusion für Einsteiger",
+            "desc": "Nenlys erster systematischer KI-Kunst-Kurs auf Bilibili: Prinzipien, Installation und Bilderzeugung mit Stable Diffusion, Schritt für Schritt. Gilt als das einsteigerfreundlichste Tutorial. Für Kreative ohne Vorkenntnisse.",
+            "series": "Praxis · Folge 6"
           }
         }
       }
